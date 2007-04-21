@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<!-- Copyright (c) 2007  Dustin Sallings (dustin@spy.net) -->
+
+<document>
+	<properties>
+		<author email="dustin@spy.net">Dustin Sallings</author>
+		<title>A java digg.com client</title>
+	</properties>
+
+	<body>
+		<section name="Overview">
+			<p>
+				This is a java API implementing the digg API as specified in the
+				<a href="http://apidoc.digg.com/">digg API documentation</a>.
+			</p>
+		</section>
+
+		<section name="Usage">
+			<p>
+				Usage is pretty simple.  Note that you will need to supply an
+				<a href="http://apidoc.digg.com/ApplicationKeys">application key</a>.
+			</p>
+			<p>
+				Application keys are arbitrary and don't need to be registered.  For
+				the most part, it's just an arbitrary URL.  Check the reference for
+				more details.
+			</p>
+
+			<pre>
+Digg d=new Digg(MY_APP_ID);
+Collection&lt;Story&gt; stories=d.getStories(null);
+			</pre>
+
+			<p>
+				See the <a href="apidocs/index.html">the API docs</a> for more details.
+			</p>
+		</section>
+
+    <section name="Where to Get">
+      <h3>Binary Distributions</h3>
+      <p>
+        My <a href="http://bleu.west.spy.net/~dustin/repo/">maven 1
+        repository</a> has the latest binary version here:
+        <blockquote>
+          http://bleu.west.spy.net/~dustin/repo/
+        </blockquote>
+      </p>
+      <h3>Source Code</h3>
+      <p>
+        The source can be downloaded or checked out from my
+        <a href="http://rubik.west.spy.net/hg/java/digg/">mercurial
+        repository</a>.
+      </p>
+      <h3>Dependencies</h3>
+      <p>
+				This project uses Apache's
+				<a href="http://jakarta.apache.org/commons/httpclient/">http client</a>,
+				which has its own dependencies (commons-logging and commons-codec).
+				The <a href="dependencies.html">dependencies</a> report will show which
+				versions I'm using.
+      </p>
+    </section>
+
+    <section name="License">
+      <p>
+        This project is released under the
+        <a href="http://www.opensource.org/licenses/mit-license.php">MIT</a>
+        license.
+      </p>
+    </section>
+
+	</body>
+</document>

@@ -53,11 +53,6 @@
 
 		<dependency>
 			<groupId>spy</groupId>
-			<artifactId>spy</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-		<dependency>
-			<groupId>spy</groupId>
 			<artifactId>maven-hg-plugin</artifactId>
 			<version>1.0</version>
 			<type>plugin</type>
