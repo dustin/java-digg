@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<errors timestamp="1176998323">
+ <error code="403" message="Forbidden" />
+ <error code="404" message="Not found" />
+ <error code="500" message="Internal error" />
+ <error code="1001" message="Unrecognized argument" />
+ <error code="1002" message="A Digg API request is missing the callback argument." />
+ <error code="1003" message="A Digg API request has an invalid callback argument." />
+ <error code="1005" message="Application key required" />
+ <error code="1006" message="Argument less than minimum value" />
+ <error code="1007" message="Argument greater than maximum value" />
+ <error code="1008" message="No such story" />
+ <error code="1009" message="Date/time range may not be more than 60 minutes" />
+ <error code="1010" message="That user has not commented on that story." />
+ <error code="1011" message="No such comment for that story" />
+ <error code="1012" message="The story endpoint requires a title or numeric ID" />
+ <error code="1013" message="At most 100 stories may be requested by ID" />
+ <error code="1014" message="Unknown container or topic" />
+ <error code="1015" message="Invalid domain argument" />
+ <error code="1016" message="Invalid link argument" />
+ <error code="1017" message="Unrecognized sort argument" />
+ <error code="1018" message="Submit and promote date/time ranges may not be used together" />
+ <error code="1019" message="Promote date range may not specified for upcoming stories" />
+ <error code="1020" message="Date/time range may not be more than 30 days" />
+ <error code="1021" message="No such user" />
+ <error code="1022" message="That user is not a friend of that user" />
+ <error code="1023" message="That user is not befriended by that user" />
+ <error code="1024" message="Unrecognized period argument" />
+ <error code="1025" message="Unrecognized error code" />
+ <error code="1026" message="Invalid integer argument" />
+ <error code="1027" message="At most 100 users' diggs or comments may be requested by username" />
+ <error code="1028" message="Invalid application key" />
+</errors>

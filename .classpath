@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<classpath>
+  <classpathentry excluding="" kind="src" path="src/java"/>
+  <classpathentry output="target/test-classes" kind="src" path="src/test"/>
+  <classpathentry kind="var" path="MAVEN_REPO/junit/jars/junit-3.8.2.jar">
+  </classpathentry>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+  </classpathentry>
+  <classpathentry kind="var" path="MAVEN_REPO/commons-httpclient/jars/commons-httpclient-3.1-rc1.jar">
+  </classpathentry>
+  <classpathentry kind="var" path="MAVEN_REPO/spy/jars/spy-2.3.1.jar">
+  </classpathentry>
+  <classpathentry kind="var" path="MAVEN_REPO/jmock/jars/jmock-1.0.1.jar">
+  </classpathentry>
+  <classpathentry kind="var" path="MAVEN_REPO/jmock/jars/jmock-cglib-1.0.1.jar">
+  </classpathentry>
+  <classpathentry kind="var" path="MAVEN_REPO/cglib/jars/cglib-full-2.0.2.jar">
+  </classpathentry>
+  <classpathentry kind="output" path="target/classes">
+  </classpathentry>
+</classpath>

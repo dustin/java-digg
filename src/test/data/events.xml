@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<events timestamp="1176998174" min_date="1176760800" total="19" offset="0" count="10">
+ <digg date="1176935035" story="1776206" id="65657478" user="kevinrose" status="upcoming" />
+ <digg date="1176917530" story="1797248" id="65602282" user="kevinrose" status="upcoming" />
+ <digg date="1176917246" story="1795682" id="65601396" user="kevinrose" status="popular" />
+ <digg date="1176877849" story="1786809" id="65528931" user="kevinrose" status="popular" />
+ <digg date="1176877580" story="1790457" id="65528556" user="kevinrose" status="popular" />
+ <digg date="1176877472" story="1794432" id="65528395" user="kevinrose" status="popular" />
+ <digg date="1176857787" story="1792060" id="65485850" user="kevinrose" status="popular" />
+ <digg date="1176850782" story="1781720" id="65468359" user="kevinrose" status="popular" />
+ <digg date="1176848403" story="1780680" id="65461429" user="kevinrose" status="popular" />
+ <digg date="1176847067" story="1789199" id="65457469" user="kevinrose" status="upcoming" />
+</events>

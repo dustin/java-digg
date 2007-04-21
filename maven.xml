@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<!-- Copyright (c) 2005  Dustin Sallings (dustin@spy.net) -->
+
+<project default="jar">
+	<preGoal name="java:compile">
+		<attainGoal name="hg:versions"/>
+		<attainGoal name="spy:buildinfo"/>
+		<attainGoal name="hg:changelog"/>
+		<attainGoal name="copySources"/>
+	</preGoal>
+	<!-- make sources available within the jar file. -->
+	<goal name="copySources">
+		<copy todir="${maven.build.dir}/classes">
+			<fileset dir="${maven.src.dir}/java">
+				<include name="**/*.java"/>
+			</fileset>
+		</copy>
+	</goal>
+</project>
