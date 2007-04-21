@@ -6,7 +6,7 @@ import org.w3c.dom.Node;
 /**
  * Paged item parser for items that also include date information.
  */
-public abstract class TimePagedItemParser extends PagedItemParser {
+public abstract class TimePagedItemParser<T> extends PagedItemParser<T> {
 
 	private long minDate;
 

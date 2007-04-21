@@ -1,17 +1,22 @@
 package net.spy.digg.parsers;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
  * Base class for paged results.
  */
-public abstract class PagedItemParser extends BaseParser {
+public abstract class PagedItemParser<T> extends BaseParser {
 
 	private long timestamp;
 	private int total;
 	private int offset;
 	private int count;
+
+	private Collection<T> items=new ArrayList<T>();
 
 	/**
 	 * Extract the common paged stuff from the given document.
@@ -22,6 +27,13 @@ public abstract class PagedItemParser extends BaseParser {
 		total=Integer.parseInt(getAttr(root, "total"));
 		offset=Integer.parseInt(getAttr(root, "offset"));
 		count=Integer.parseInt(getAttr(root, "count"));
+	}
+
+	/**
+	 * Add an item.
+	 */
+	protected void addItem(T item) {
+		items.add(item);
 	}
 
 	/**
@@ -52,4 +64,10 @@ public abstract class PagedItemParser extends BaseParser {
 		return total;
 	}
 
+	/**
+	 * Get the items.
+	 */
+	public Collection<T> getItems() {
+		return items;
+	}
 }

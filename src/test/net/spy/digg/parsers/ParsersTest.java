@@ -56,14 +56,14 @@ public class ParsersTest extends TestCase {
 
 	public void testEventsParser() throws Exception {
 		EventsParser ep=doParse("events.xml", EventsParser.class);
-		assertEquals(10, ep.getEvents().size());
+		assertEquals(10, ep.getItems().size());
 		assertEquals(1176998174000L, ep.getTimestamp());
 		assertEquals(1176760800000L, ep.getMinDate());
 		assertEquals(10, ep.getCount());
 		assertEquals(19, ep.getTotal());
 		assertEquals(0, ep.getOffset());
 
-		Event e=ep.getEvents().iterator().next();
+		Event e=ep.getItems().iterator().next();
 		assertEquals("{Event id=65657478, sid=1776206, "
 				+ "user=kevinrose, status=upcoming}", String.valueOf(e));
 		assertEquals(65657478, e.getEventId());
@@ -94,8 +94,8 @@ public class ParsersTest extends TestCase {
 
 	public void testStoriesParsers() throws Exception {
 		StoriesParser sp=doParse("stories.xml", StoriesParser.class);
-		assertEquals(3, sp.getStories().size());
-		Story s=sp.getStories().iterator().next();
+		assertEquals(3, sp.getItems().size());
+		Story s=sp.getItems().iterator().next();
 
 		// Validate the parsed user
 		User u=s.getUser();

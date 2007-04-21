@@ -1,7 +1,5 @@
 package net.spy.digg;
 
-import java.util.Date;
-
 /**
  * An event.
  */
