@@ -10,13 +10,15 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import net.spy.digg.TopicContainer;
+
 
 /**
  * Parse the topics.
  */
 public class TopicsParser extends BaseParser {
 
-	private Map<String, TopicContainerImpl> containers;
+	private Map<String, TopicContainer> containers;
 
 	/**
 	 * Construct a TopicsParser with the given stream.
@@ -25,7 +27,7 @@ public class TopicsParser extends BaseParser {
 		Document doc = getDocument(is, "topics");
 
 		// First, build out all of the containers.
-		containers=new HashMap<String, TopicContainerImpl>();
+		containers=new HashMap<String, TopicContainer>();
 
 		// Build out the topics.
 		NodeList nl=doc.getDocumentElement().getElementsByTagName("topic");
@@ -47,7 +49,7 @@ public class TopicsParser extends BaseParser {
 			String cname=getAttr(cn, "name");
 			String cshortName=getAttr(cn, "short_name");
 
-			TopicContainerImpl tc=containers.get(cshortName);
+			TopicContainer tc=containers.get(cshortName);
 			if(tc == null) {
 				tc=new TopicContainerImpl(cname, cshortName);
 				containers.put(cshortName, tc);
@@ -59,7 +61,7 @@ public class TopicsParser extends BaseParser {
 	/**
 	 * Get a map of all topic containers by short name.
 	 */
-	public Map<String, TopicContainerImpl> getContainers() {
+	public Map<String, TopicContainer> getContainers() {
 		return containers;
 	}
 }

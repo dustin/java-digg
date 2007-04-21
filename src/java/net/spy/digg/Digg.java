@@ -13,6 +13,7 @@ import org.apache.commons.httpclient.methods.GetMethod;
 
 import net.spy.digg.parsers.BaseParser;
 import net.spy.digg.parsers.ErrorsParser;
+import net.spy.digg.parsers.TopicsParser;
 import net.spy.digg.parsers.UsersParser;
 
 /**
@@ -22,7 +23,8 @@ public class Digg {
 
 	private static final String BASE_URL="http://services.digg.com/";
 
-	Map<Integer, String> errors=null;
+	private Map<Integer, String> errors=null;
+	private Map<String, TopicContainer> containers=null;
 
 	private String appKey;
 
@@ -51,6 +53,34 @@ public class Digg {
 	 */
 	public String getError(int id) throws DiggException {
 		return getErrors().get(id);
+	}
+
+	/**
+	 * Get all topics and topic containers.
+	 */
+	public Map<String, TopicContainer> getTopics() throws DiggException {
+		if(containers == null) {
+			TopicsParser tp=fetchParsed(TopicsParser.class, "topics");
+			containers=tp.getContainers();
+		}
+		return containers;
+	}
+
+	/**
+	 * Get the named topic.
+	 */
+	public Topic getTopic(String top) throws DiggException {
+		Topic rv=null;
+		Map<String, TopicContainer> topics = getTopics();
+		for(Map.Entry<String, TopicContainer> me : topics.entrySet()) {
+			for(Topic t : me.getValue()) {
+				if(t.getName().equals(top) || t.getShortName().equals(top)) {
+					assert rv == null : "Found duplicate topic match";
+					rv=t;
+				}
+			}
+		}
+		return rv;
 	}
 
 	private PagedItems<User> getUsers(String root, UserParameters p)
