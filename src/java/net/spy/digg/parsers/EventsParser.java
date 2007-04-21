@@ -23,14 +23,19 @@ public class EventsParser extends TimePagedItemParser<Event> {
 
 		parseCommonFields(doc);
 
-		NodeList nl=doc.getElementsByTagName("digg");
+		NodeList nl=doc.getFirstChild().getChildNodes();
 		for(int i=0; i<nl.getLength(); i++) {
 			Node n=nl.item(i);
-			addItem(new EventImpl(
-					1000*Long.parseLong(getAttr(n, "date")),
-					Integer.parseInt(getAttr(n, "story")),
-					Integer.parseInt(getAttr(n, "id")),
-					getAttr(n, "user"), getAttr(n, "status")));
+			String nm=n.getNodeName();
+			if(nm.equals("digg")) {
+				addItem(new EventImpl(n));
+			} else if(nm.equals("comment")) {
+				addItem(new CommentImpl(n));
+			} else if(n.getNodeType() == Node.TEXT_NODE) {
+				// Ignore text
+			} else {
+				assert false : "Unhandled node: " + n;
+			}
 		}
 	}
 

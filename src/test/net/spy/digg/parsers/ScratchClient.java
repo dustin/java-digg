@@ -10,6 +10,6 @@ public class ScratchClient {
 		Digg d=new Digg("http://rubik.west.spy.net/hg/java/digg/");
 
 		System.out.println(d.getUserComments(
-				Arrays.asList("dlsspy", "crispee"), null));
+				Arrays.asList("dlsspy"), null));
 	}
 }

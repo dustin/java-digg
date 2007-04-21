@@ -218,76 +218,78 @@ public class Digg {
 		return getEvents("users/" + join(",", users) + "/diggs", p);
 	}
 
+	private PagedItems<Comment> getComments(String root, EventParameters p)
+		throws DiggException {
+		PagedItems<Comment> rv=new PagedItems<Comment>();
+		for(Event e : getEvents(root, p)) {
+			assert e instanceof Comment : "Expected a comment, got " + e;
+			rv.add((Comment)e);
+		}
+		return rv;
+	}
+
 	/**
 	 * Get all comment events.
 	 */
-	public PagedItems<Event> getComments(EventParameters p)
+	public PagedItems<Comment> getComments(EventParameters p)
 		throws DiggException {
-		// XXX:  This doesn't return events at all.
-		return getEvents("stories/comments", p);
+		return getComments("stories/comments", p);
 	}
 
 	/**
 	 * Get comments on popular stories.
 	 */
-	public PagedItems<Event> getPopularComments(EventParameters p)
+	public PagedItems<Comment> getPopularComments(EventParameters p)
 		throws DiggException {
-		// XXX:  Another comment variation.
-		return getEvents("stories/popular/comments", p);
+		return getComments("stories/popular/comments", p);
 	}
 
 	/**
 	 * Get comments on upcoming stories.
 	 */
-	public PagedItems<Event> getUpcomingComments(EventParameters p)
+	public PagedItems<Comment> getUpcomingComments(EventParameters p)
 		throws DiggException {
-		// XXX:  Another comment variation.
-		return getEvents("stories/upcoming/comments", p);
+		return getComments("stories/upcoming/comments", p);
 	}
 
 	/**
 	 * Get comments for the given stories.
 	 */
-	public PagedItems<Event> getComments(Collection<Integer> stories,
+	public PagedItems<Comment> getComments(Collection<Integer> stories,
 			EventParameters p) throws DiggException {
-		// XXX:  Another comment variation
-		return getEvents("stories/" + join(",", stories) + "/comments", p);
+		return getComments("stories/" + join(",", stories) + "/comments", p);
 	}
 
 	/**
 	 * Get comments for the given story.
 	 */
-	public PagedItems<Event> getComments(int story, EventParameters p)
+	public PagedItems<Comment> getComments(int story, EventParameters p)
 		throws DiggException {
-		// XXX:  Another comment variation
-		return getEvents("story/" + story + "/comments", p);
+		return getComments("story/" + story + "/comments", p);
 	}
 
 	/**
 	 * Get comments for the given user.
 	 */
-	public PagedItems<Event> getUserComments(String user, EventParameters p)
+	public PagedItems<Comment> getUserComments(String user, EventParameters p)
 		throws DiggException {
-		// XXX:  Another comment variation.
-		return getEvents("user/" + user + "/comments", null);
+		return getComments("user/" + user + "/comments", null);
 	}
 
 	/**
 	 * Get comments for the given user.
 	 */
-	public PagedItems<Event> getUserComments(Collection<String> users,
+	public PagedItems<Comment> getUserComments(Collection<String> users,
 			EventParameters p) throws DiggException {
-		// XXX:  Another comment variation.
-		return getEvents("users/" + join(",", users) + "/comments", null);
+		return getComments("users/" + join(",", users) + "/comments", null);
 	}
 
 	/**
 	 * Get the replies to the given comment on the given story.
 	 */
-	public PagedItems<Event> getCommentReplies(int storyId, int commentId,
+	public PagedItems<Comment> getCommentReplies(int storyId, int commentId,
 			EventParameters p) throws DiggException {
-		// XXX:  More comment stuff
-		return getEvents("story/" + storyId + "/comment/"
+		return getComments("story/" + storyId + "/comment/"
 				+ commentId + "/replies", p);
 	}
 

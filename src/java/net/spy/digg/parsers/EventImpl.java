@@ -1,5 +1,7 @@
 package net.spy.digg.parsers;
 
+import org.w3c.dom.Node;
+
 import net.spy.digg.Event;
 
 /**
@@ -16,13 +18,13 @@ public class EventImpl implements Event {
 	/**
 	 * Construct an Event.
 	 */
-	EventImpl(long d, int sId, int eId, String u, String s) {
+	EventImpl(Node n) {
 		super();
-		date = d;
-		storyId = sId;
-		eventId = eId;
-		user = u;
-		status = s;
+		date=1000*Long.parseLong(BaseParser.getAttr(n, "date"));
+		storyId=Integer.parseInt(BaseParser.getAttr(n, "story"));
+		eventId=Integer.parseInt(BaseParser.getAttr(n, "id"));
+		user=BaseParser.getAttr(n, "user");
+		status=BaseParser.getAttr(n, "status");
 	}
 
 	/* (non-Javadoc)

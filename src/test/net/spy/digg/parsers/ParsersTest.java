@@ -6,6 +6,7 @@ import java.lang.reflect.Constructor;
 
 import junit.framework.TestCase;
 
+import net.spy.digg.Comment;
 import net.spy.digg.Event;
 import net.spy.digg.Story;
 import net.spy.digg.Topic;
@@ -71,6 +72,28 @@ public class ParsersTest extends TestCase {
 		assertEquals("kevinrose", e.getUser());
 		assertEquals("upcoming", e.getStatus());
 		assertEquals(1176935035000L, e.getTimestamp());
+	}
+
+	public void testCommentsParser() throws Exception {
+		EventsParser ep=doParse("comments.xml", EventsParser.class);
+		// <events timestamp="1177142439" min_date="1177138830" total="414" 
+		// offset="0" count="10">
+		assertEquals(10, ep.getItems().size());
+		assertEquals(1177142439000L, ep.getTimestamp());
+		assertEquals(1177138830000L, ep.getMinDate());
+		assertEquals(10, ep.getCount());
+		assertEquals(414, ep.getTotal());
+		assertEquals(0, ep.getOffset());
+
+		Comment c=(Comment)ep.getItems().iterator().next();
+		assertEquals(6273341, c.getEventId());
+		assertEquals(new Integer(6268248), c.getReplyId());
+		assertEquals("mikesbaker", c.getUser());
+		assertEquals(1, c.getDiggsUp());
+		assertEquals(0, c.getDiggsDown());
+		assertEquals(1814797, c.getStoryId());
+		assertTrue(c.getComment().contains("both of you"));
+		
 	}
 
 	public void testUsersParser() throws Exception {

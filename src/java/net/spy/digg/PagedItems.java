@@ -16,6 +16,10 @@ public class PagedItems<T> extends ArrayList<T> {
 	private int offset;
 	private int count;
 
+	PagedItems() {
+		super();
+	}
+
 	PagedItems(PagedItemParser<T> p) {
 		super(p.getItems());
 		timestamp=p.getTimestamp();
