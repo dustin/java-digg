@@ -151,7 +151,7 @@ public class ParsersTest extends TestCase {
 				+ " free copy of 1Passwd. Contest Ends April 30th.",
 				s.getDescription());
 
-		assertEquals("{Story ``Win A Free Copy of 1Passwd''}",
+		assertEquals("{Story id=1806025 ``Win A Free Copy of 1Passwd''}",
 				String.valueOf(s));
 	}
 }
