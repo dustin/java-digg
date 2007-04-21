@@ -48,23 +48,23 @@
  <topic name="General Sciences" short_name="general_sciences">
   <container name="Science" short_name="science" />
  </topic>
- <topic name="Business & Finance" short_name="business_finance">
-  <container name="World & Business" short_name="world_business" />
+ <topic name="Business &amp; Finance" short_name="business_finance">
+  <container name="World &amp; Business" short_name="world_business" />
  </topic>
  <topic name="Political News" short_name="politics">
-  <container name="World & Business" short_name="world_business" />
+  <container name="World &amp; Business" short_name="world_business" />
  </topic>
  <topic name="US Elections 2008" short_name="2008_us_elections">
-  <container name="World & Business" short_name="world_business" />
+  <container name="World &amp; Business" short_name="world_business" />
  </topic>
  <topic name="Political Opinion" short_name="political_opinion">
-  <container name="World & Business" short_name="world_business" />
+  <container name="World &amp; Business" short_name="world_business" />
  </topic>
  <topic name="World News" short_name="world_news">
-  <container name="World & Business" short_name="world_business" />
+  <container name="World &amp; Business" short_name="world_business" />
  </topic>
  <topic name="Offbeat News" short_name="offbeat_news">
-  <container name="World & Business" short_name="world_business" />
+  <container name="World &amp; Business" short_name="world_business" />
  </topic>
  <topic name="Baseball" short_name="baseball">
   <container name="Sports" short_name="sports" />
@@ -75,7 +75,7 @@
  <topic name="Extreme" short_name="extreme_sports">
   <container name="Sports" short_name="sports" />
  </topic>
- <topic name="American & Canadian Football" short_name="football">
+ <topic name="American &amp; Canadian Football" short_name="football">
   <container name="Sports" short_name="sports" />
  </topic>
  <topic name="Golf" short_name="golf">
