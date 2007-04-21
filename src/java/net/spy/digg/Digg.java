@@ -15,6 +15,7 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import net.spy.digg.parsers.BaseParser;
 import net.spy.digg.parsers.ErrorsParser;
 import net.spy.digg.parsers.EventsParser;
+import net.spy.digg.parsers.StoriesParser;
 import net.spy.digg.parsers.TopicsParser;
 import net.spy.digg.parsers.UsersParser;
 
@@ -147,17 +148,20 @@ public class Digg {
 		return rv;
 	}
 
+
+	private void applyDateParam(Map<String, String> m, String k, Long d) {
+		if(d != null) {
+			m.put(k, String.valueOf(d/1000));
+		}
+	}
+
 	private PagedItems<Event> getEvents(String root, EventParameters p)
 		throws DiggException {
 		Map<String, String> m=new HashMap<String, String>();
 		if(p != null) {
 			applyPagingParams(p, m);
-			if(p.getMaxDate() != null) {
-				m.put("max_date", String.valueOf(p.getMaxDate() / 1000));
-			}
-			if(p.getMinDate() != null) {
-				m.put("min_date", String.valueOf(p.getMinDate() / 1000));
-			}
+			applyDateParam(m, "max_date", p.getMaxDate());
+			applyDateParam(m, "min_date", p.getMinDate());
 		}
 		EventsParser up=fetchParsed(EventsParser.class, root, m);
 		return new PagedItems<Event>(up);
@@ -291,6 +295,138 @@ public class Digg {
 			EventParameters p) throws DiggException {
 		return getComments("story/" + storyId + "/comment/"
 				+ commentId + "/replies", p);
+	}
+
+	private PagedItems<Story> getStories(String root, StoryParameters p)
+		throws DiggException {
+		Map<String, String> m=new HashMap<String, String>();
+		if(p != null) {
+			applyPagingParams(p, m);
+			applyDateParam(m, "max_promote_date", p.getMaxPromoteDate());
+			applyDateParam(m, "min_promote_date", p.getMinPromoteDate());
+			applyDateParam(m, "max_submit_date", p.getMaxSubmitDate());
+			applyDateParam(m, "min_submit_date", p.getMinSubmitDate());
+		}
+		StoriesParser up=fetchParsed(StoriesParser.class, root, m);
+		return new PagedItems<Story>(up);
+	}
+
+	/**
+	 * Get all stories.
+	 */
+	public PagedItems<Story> getStories(StoryParameters p)
+		throws DiggException {
+		return getStories("stories", p);
+	}
+
+	/**
+	 * Get the popular stories.
+	 */
+	public PagedItems<Story> getPopularStories(StoryParameters p)
+		throws DiggException {
+		return getStories("stories/popular", p);
+	}
+
+	/**
+	 * Get the upcoming stories.
+	 */
+	public PagedItems<Story> getUpcomingStories(StoryParameters p)
+		throws DiggException {
+		return getStories("stories/upcoming", p);
+	}
+
+	/**
+	 * Get the stories in the given container.
+	 */
+	public PagedItems<Story> getStories(TopicContainer container,
+			StoryParameters p) throws DiggException {
+		return getStories("stories/container/" + container.getShortName(), p);
+	}
+
+	/**
+	 * Get the popular stories in the given container.
+	 */
+	public PagedItems<Story> getPopularStories(TopicContainer container,
+			StoryParameters p) throws DiggException {
+		return getStories("stories/container/" + container.getShortName()
+				+ "/popular", p);
+	}
+
+	/**
+	 * Get the upcoming stories in the given container.
+	 */
+	public PagedItems<Story> getUpcomingStories(TopicContainer container,
+			StoryParameters p) throws DiggException {
+		return getStories("stories/container/" + container.getShortName()
+				+ "/upcoming", p);
+	}
+
+	/**
+	 * Get all of the stories within the given topic.
+	 */
+	public PagedItems<Story> getStories(Topic topic, StoryParameters p)
+		throws DiggException {
+		return getStories("stories/topic/" + topic.getShortName(), p);
+	}
+
+	/**
+	 * Get all of the popular stories within the given topic.
+	 */
+	public PagedItems<Story> getPopularStories(Topic topic, StoryParameters p)
+		throws DiggException {
+		return getStories("stories/topic/" + topic.getShortName()
+				+ "/popular", p);
+	}
+
+	/**
+	 * Get all of the upcoming stories within the given topic.
+	 */
+	public PagedItems<Story> getUpcomingStories(Topic topic, StoryParameters p)
+		throws DiggException {
+		return getStories("stories/topic/" + topic.getShortName()
+				+ "/upcoming", p);
+	}
+
+	/**
+	 * Get the specified stories.
+	 */
+	public PagedItems<Story> getStories(Collection<Integer> ids,
+			StoryParameters p) throws DiggException {
+		return getStories("stories/" + join(",", ids), p);
+	}
+
+	/**
+	 * Get the story with the given id.
+	 */
+	public Story getStory(int id) throws DiggException {
+		PagedItems<Story> c=getStories("story/" + id, null);
+		assert c.size() < 2 : "Too many results for " + id;
+		Story rv=null;
+		if(!c.isEmpty()) {
+			rv=c.iterator().next();
+		}
+		return rv;
+	}
+
+	/**
+	 * Get the story with the given clean URL.
+	 */
+	public Story getStory(String cleanUrl) throws DiggException {
+		PagedItems<Story> c=getStories("story/" + cleanUrl, null);
+		assert c.size() < 2 : "Too many results for " + cleanUrl;
+		Story rv=null;
+		if(!c.isEmpty()) {
+			rv=c.iterator().next();
+		}
+		return rv;
+	}
+
+	/**
+	 * Get the stories submitted by the given user.
+	 */
+	public PagedItems<Story> getUserStories(String u, StoryParameters p)
+		throws DiggException {
+		return getStories("user/" + u + "/submissions", p);
 	}
 
 	private String join(String j, Collection<?> c) {

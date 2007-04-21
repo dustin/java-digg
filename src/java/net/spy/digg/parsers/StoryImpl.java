@@ -151,6 +151,6 @@ class StoryImpl implements Story {
 
 	@Override
 	public String toString() {
-		return "{Story ``" + title + "''}";
+		return "{Story id=" + id + " ``" + title + "''}";
 	}
 }
