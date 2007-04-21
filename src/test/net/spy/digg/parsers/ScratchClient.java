@@ -1,5 +1,7 @@
 package net.spy.digg.parsers;
 
+import java.util.Arrays;
+
 import net.spy.digg.Digg;
 
 public class ScratchClient {
@@ -7,8 +9,7 @@ public class ScratchClient {
 	public static void main(String args[]) throws Exception {
 		Digg d=new Digg("http://rubik.west.spy.net/hg/java/digg/");
 
-		System.out.println(d.getTopics());
-		System.out.println(d.getTopic("apple"));
-		System.out.println(d.getTopic("Apple"));
+		System.out.println(d.getUserComments(
+				Arrays.asList("dlsspy", "crispee"), null));
 	}
 }

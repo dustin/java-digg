@@ -42,13 +42,13 @@ public abstract class BaseParser {
 	 * Get the named attribute for the given node.
 	 */
 	public static String getAttr(Node n, String s) {
+		String rv=null;
 		assert n !=  null : "Null node";
 		assert s != null : "Null attr name";
 		assert n.getAttributes() != null : "No attributes on " + n;
-		assert n.getAttributes().getNamedItem(s) != null
-			: "No attribute named " + s + " on " + n;
-		assert n.getAttributes().getNamedItem(s).getNodeValue() != null
-			: "Null attr value for " + s + " on " + n;
-		return n.getAttributes().getNamedItem(s).getNodeValue();
+		if(n.getAttributes().getNamedItem(s) != null) {
+			rv=n.getAttributes().getNamedItem(s).getNodeValue();
+		}
+		return rv;
 	}
 }

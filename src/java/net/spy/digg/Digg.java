@@ -3,6 +3,7 @@ package net.spy.digg;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.apache.commons.httpclient.methods.GetMethod;
 
 import net.spy.digg.parsers.BaseParser;
 import net.spy.digg.parsers.ErrorsParser;
+import net.spy.digg.parsers.EventsParser;
 import net.spy.digg.parsers.TopicsParser;
 import net.spy.digg.parsers.UsersParser;
 
@@ -87,12 +89,22 @@ public class Digg {
 		throws DiggException {
 		Map<String, String> m=new HashMap<String, String>();
 		if(p != null) {
-			m.put("sort", p.getSort());
-			m.put("offset", String.valueOf(p.getOffset()));
-			m.put("count", String.valueOf(p.getCount()));
+			applyPagingParams(p, m);
 		}
 		UsersParser up=fetchParsed(UsersParser.class, root, m);
 		return new PagedItems<User>(up);
+	}
+
+	private void applyPagingParams(PagingParameters p, Map<String, String> m) {
+		if(p.getSort() != null) {
+			m.put("sort", p.getSort());
+		}
+		if(p.getOffset() != null) {
+			m.put("offset", String.valueOf(p.getOffset()));
+		}
+		if(p.getCount() !=  null) {
+			m.put("count", String.valueOf(p.getCount()));
+		}
 	}
 
 	/**
@@ -133,6 +145,164 @@ public class Digg {
 			rv=users.values().iterator().next();
 		}
 		return rv;
+	}
+
+	private PagedItems<Event> getEvents(String root, EventParameters p)
+		throws DiggException {
+		Map<String, String> m=new HashMap<String, String>();
+		if(p != null) {
+			applyPagingParams(p, m);
+			if(p.getMaxDate() != null) {
+				m.put("max_date", String.valueOf(p.getMaxDate() / 1000));
+			}
+			if(p.getMinDate() != null) {
+				m.put("min_date", String.valueOf(p.getMinDate() / 1000));
+			}
+		}
+		EventsParser up=fetchParsed(EventsParser.class, root, m);
+		return new PagedItems<Event>(up);
+	}
+
+	/**
+	 * Get all digg events.
+	 */
+	public PagedItems<Event> getDiggs(EventParameters p) throws DiggException {
+		return getEvents("stories/diggs", p);
+	}
+
+	/**
+	 * Get digg events on popular stories.
+	 */
+	public PagedItems<Event> getPopularDiggs(EventParameters p)
+		throws DiggException {
+		return getEvents("stories/popular/diggs", p);
+	}
+
+	/**
+	 * Get digg events on popular stories.
+	 */
+	public PagedItems<Event> getUpcomingDiggs(EventParameters p)
+		throws DiggException {
+		return getEvents("stories/upcoming/diggs", p);
+	}
+
+	/**
+	 * Get digg events for the given story id.
+	 */
+	public PagedItems<Event> getStoryDiggs(int storyId, EventParameters p)
+		throws DiggException {
+		return getEvents("story/" + storyId + "/diggs", p);
+	}
+
+	/**
+	 * Get digg events for the given story id.
+	 */
+	public PagedItems<Event> getStoryDiggs(Collection<Integer> stories,
+			EventParameters p) throws DiggException {
+		return getEvents("stories/" + join(",", stories) + "/diggs", p);
+	}
+
+	/**
+	 * Get the diggs from the given user.
+	 */
+	public PagedItems<Event> getUserDiggs(String u, EventParameters p)
+		throws DiggException {
+		return getEvents("user/" + u + "/diggs", p);
+	}
+
+	/**
+	 * Get the diggs from the given users.
+	 */
+	public PagedItems<Event> getUserDiggs(Collection<String> users,
+			EventParameters p) throws DiggException {
+		return getEvents("users/" + join(",", users) + "/diggs", p);
+	}
+
+	/**
+	 * Get all comment events.
+	 */
+	public PagedItems<Event> getComments(EventParameters p)
+		throws DiggException {
+		// XXX:  This doesn't return events at all.
+		return getEvents("stories/comments", p);
+	}
+
+	/**
+	 * Get comments on popular stories.
+	 */
+	public PagedItems<Event> getPopularComments(EventParameters p)
+		throws DiggException {
+		// XXX:  Another comment variation.
+		return getEvents("stories/popular/comments", p);
+	}
+
+	/**
+	 * Get comments on upcoming stories.
+	 */
+	public PagedItems<Event> getUpcomingComments(EventParameters p)
+		throws DiggException {
+		// XXX:  Another comment variation.
+		return getEvents("stories/upcoming/comments", p);
+	}
+
+	/**
+	 * Get comments for the given stories.
+	 */
+	public PagedItems<Event> getComments(Collection<Integer> stories,
+			EventParameters p) throws DiggException {
+		// XXX:  Another comment variation
+		return getEvents("stories/" + join(",", stories) + "/comments", p);
+	}
+
+	/**
+	 * Get comments for the given story.
+	 */
+	public PagedItems<Event> getComments(int story, EventParameters p)
+		throws DiggException {
+		// XXX:  Another comment variation
+		return getEvents("story/" + story + "/comments", p);
+	}
+
+	/**
+	 * Get comments for the given user.
+	 */
+	public PagedItems<Event> getUserComments(String user, EventParameters p)
+		throws DiggException {
+		// XXX:  Another comment variation.
+		return getEvents("user/" + user + "/comments", null);
+	}
+
+	/**
+	 * Get comments for the given user.
+	 */
+	public PagedItems<Event> getUserComments(Collection<String> users,
+			EventParameters p) throws DiggException {
+		// XXX:  Another comment variation.
+		return getEvents("users/" + join(",", users) + "/comments", null);
+	}
+
+	/**
+	 * Get the replies to the given comment on the given story.
+	 */
+	public PagedItems<Event> getCommentReplies(int storyId, int commentId,
+			EventParameters p) throws DiggException {
+		// XXX:  More comment stuff
+		return getEvents("story/" + storyId + "/comment/"
+				+ commentId + "/replies", p);
+	}
+
+	private String join(String j, Collection<?> c) {
+		boolean first=true;
+		StringBuilder sb=new StringBuilder();
+		for(Object o : c) {
+			if(first) {
+				first=false;
+			} else {
+				sb.append(j);
+			}
+			sb.append(String.valueOf(o));
+		}
+		return sb.toString();
 	}
 
 	private <T extends BaseParser> T fetchParsed(Class<T> cls, String u)
