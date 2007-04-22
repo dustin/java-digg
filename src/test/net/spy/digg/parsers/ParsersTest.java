@@ -38,10 +38,16 @@ public class ParsersTest extends TestCase {
 		}
 	}
 
-	public void testErrorsWithSample() throws Exception {
+	public void testErrorsParser() throws Exception {
 		ErrorsParser ep=doParse("errors.xml", ErrorsParser.class);
 		assertEquals(30, ep.getErrors().size());
 		assertEquals("Unknown container or topic", ep.getErrors().get(1014));
+	}
+
+	public void testErrorParser() throws Exception {
+		ErrorParser ep=doParse("error.xml", ErrorParser.class);
+		assertEquals(1014, ep.getErrorId());
+		assertEquals("Unknown container or topic", ep.getErrorMessage());
 	}
 
 	public void testTopicsParser() throws Exception {

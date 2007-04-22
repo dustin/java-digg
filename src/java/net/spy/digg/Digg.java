@@ -13,6 +13,7 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
 
 import net.spy.digg.parsers.BaseParser;
+import net.spy.digg.parsers.ErrorParser;
 import net.spy.digg.parsers.ErrorsParser;
 import net.spy.digg.parsers.EventsParser;
 import net.spy.digg.parsers.StoriesParser;
@@ -463,11 +464,13 @@ public class Digg {
 		try {
 			System.out.println("Executing " + method.getURI());
 			int rc=client.executeMethod(method);
+			is=method.getResponseBodyAsStream();
 			if(rc != HttpStatus.SC_OK) {
-				throw new DiggException("Bad HTTP status: " + rc);
+				ErrorParser ep=new ErrorParser(is);
+				throw new DiggException(ep.getErrorMessage()
+						+ " (" + ep.getErrorId() + ")");
 			}
 			Constructor<T> cons=cls.getConstructor(InputStream.class);
-			is=method.getResponseBodyAsStream();
 			rv=cons.newInstance(is);
 		} catch (Exception e) {
 			throw new DiggException(e);
