@@ -1,7 +1,6 @@
 package net.spy.digg.parsers;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,12 +19,14 @@ public class TopicsParser extends BaseParser {
 
 	private Map<String, TopicContainer> containers;
 
-	/**
-	 * Construct a TopicsParser with the given stream.
-	 */
-	public TopicsParser(InputStream is) throws SAXException, IOException {
-		Document doc = getDocument(is, "topics");
+	@Override
+	protected String getRootElementName() {
+		return "topics";
+	}
 
+	@Override
+	protected void handleDocument(Document doc)
+		throws SAXException, IOException {
 		// First, build out all of the containers.
 		containers=new HashMap<String, TopicContainer>();
 

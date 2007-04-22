@@ -1,7 +1,6 @@
 package net.spy.digg.parsers;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -15,15 +14,17 @@ public class ErrorParser extends BaseParser {
 	private int errorId;
 	private String errorMessage;
 
-	/**
-	 * Parse an error list response.
-	 */
-	public ErrorParser(InputStream is) throws SAXException, IOException {
-        Document doc = getDocument(is, "error");
+	@Override
+	protected String getRootElementName() {
+		return "error";
+	}
 
+	@Override
+	protected void handleDocument(Document doc)
+		throws SAXException, IOException {
         Node n=doc.getFirstChild();
-        	errorId=Integer.parseInt(getAttr(n, "code"));
-        	errorMessage=getAttr(n, "message");
+    	errorId=Integer.parseInt(getAttr(n, "code"));
+    	errorMessage=getAttr(n, "message");
 	}
 
 	/**

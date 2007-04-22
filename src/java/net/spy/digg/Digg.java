@@ -2,7 +2,6 @@ package net.spy.digg;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -466,12 +465,13 @@ public class Digg {
 			int rc=client.executeMethod(method);
 			is=method.getResponseBodyAsStream();
 			if(rc != HttpStatus.SC_OK) {
-				ErrorParser ep=new ErrorParser(is);
+				ErrorParser ep=new ErrorParser();
+				ep.parse(is);
 				throw new DiggException(ep.getErrorMessage()
 						+ " (" + ep.getErrorId() + ")");
 			}
-			Constructor<T> cons=cls.getConstructor(InputStream.class);
-			rv=cons.newInstance(is);
+			rv=cls.newInstance();
+			rv.parse(is);
 		} catch (Exception e) {
 			throw new DiggException(e);
 		} finally {

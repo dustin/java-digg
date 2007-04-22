@@ -1,7 +1,6 @@
 package net.spy.digg.parsers;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -14,12 +13,14 @@ import net.spy.digg.Story;
  */
 public class StoriesParser extends TimePagedItemParser<Story> {
 
-	/**
-	 * Get a stories parser.
-	 */
-	public StoriesParser(InputStream is) throws SAXException, IOException {
-		Document doc = getDocument(is, "stories");
+	@Override
+	protected String getRootElementName() {
+		return "stories";
+	}
 
+	@Override
+	protected void handleDocument(Document doc)
+		throws SAXException, IOException {
 		parseCommonFields(doc);
 
 		NodeList nl=doc.getElementsByTagName("story");

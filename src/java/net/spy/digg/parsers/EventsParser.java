@@ -1,7 +1,6 @@
 package net.spy.digg.parsers;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -15,12 +14,14 @@ import net.spy.digg.Event;
  */
 public class EventsParser extends TimePagedItemParser<Event> {
 
-	/**
-	 * Get an event parser.
-	 */
-	public EventsParser(InputStream is) throws SAXException, IOException {
-		Document doc = getDocument(is, "events");
+	@Override
+	protected String getRootElementName() {
+		return "events";
+	}
 
+	@Override
+	protected void handleDocument(Document doc)
+		throws SAXException, IOException {
 		parseCommonFields(doc);
 
 		NodeList nl=doc.getFirstChild().getChildNodes();

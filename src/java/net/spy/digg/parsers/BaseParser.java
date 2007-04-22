@@ -39,6 +39,25 @@ public abstract class BaseParser {
 	}
 
 	/**
+	 * Get the name of the expected root element.
+	 */
+	protected abstract String getRootElementName();
+
+	/**
+	 * Parse from the given input stream.
+	 */
+	public void parse(InputStream is) throws SAXException, IOException {
+		Document doc=getDocument(is, getRootElementName());
+		handleDocument(doc);
+	}
+
+	/**
+	 * Delegated document parsing.
+	 */
+	protected abstract void handleDocument(Document doc)
+		throws SAXException, IOException;
+
+	/**
 	 * Get the named attribute for the given node.
 	 */
 	public static String getAttr(Node n, String s) {

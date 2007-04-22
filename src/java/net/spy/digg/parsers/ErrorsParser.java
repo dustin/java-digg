@@ -1,7 +1,6 @@
 package net.spy.digg.parsers;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,11 +16,14 @@ public class ErrorsParser extends BaseParser {
 
 	private Map<Integer, String> errors=null;
 
-	/**
-	 * Parse an error list response.
-	 */
-	public ErrorsParser(InputStream is) throws SAXException, IOException {
-        Document doc = getDocument(is, "errors");
+	@Override
+	protected String getRootElementName() {
+		return "errors";
+	}
+
+	@Override
+	protected void handleDocument(Document doc)
+		throws SAXException, IOException {
 
         errors=new HashMap<Integer, String>();
         NodeList nl=doc.getDocumentElement().getElementsByTagName("error");

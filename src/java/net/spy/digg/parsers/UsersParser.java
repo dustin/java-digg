@@ -1,7 +1,6 @@
 package net.spy.digg.parsers;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,12 +19,9 @@ public class UsersParser extends PagedItemParser<User> {
 
 	private Map<String, User> users=new HashMap<String, User>();
 
-	/**
-	 * Parse a users response from the given input stream.
-	 */
-	public UsersParser(InputStream is) throws SAXException, IOException {
-		Document doc = getDocument(is, "users");
-
+	@Override
+	protected void handleDocument(Document doc)
+		throws SAXException, IOException {
 		parseCommonFields(doc);
 		users=new HashMap<String, User>(getCount());
 
@@ -36,6 +32,11 @@ public class UsersParser extends PagedItemParser<User> {
 			users.put(u.getName(), u);
 			addItem(u);
 		}
+	}
+
+	@Override
+	protected String getRootElementName() {
+		return "users";
 	}
 
 	/**

@@ -1,8 +1,6 @@
 package net.spy.digg.parsers;
 
 import java.io.FileInputStream;
-import java.io.InputStream;
-import java.lang.reflect.Constructor;
 
 import junit.framework.TestCase;
 
@@ -27,11 +25,12 @@ public class ParsersTest extends TestCase {
 	/**
 	 * Parse a file with the given parser and return an instance of it.
 	 */
-	private <T> T doParse(String fn, Class<T> parser) throws Exception {
+	private <T extends BaseParser> T doParse(String fn, Class<T> parser)
+		throws Exception {
 		FileInputStream fis=new FileInputStream(getSampleFile(fn));
 		try {
-			Constructor<T> cons = parser.getConstructor(InputStream.class);
-			T rv=cons.newInstance(fis);
+			T rv=parser.newInstance();
+			rv.parse(fis);
 			return rv;
 		} finally {
 			fis.close();
