@@ -8,7 +8,7 @@
 	<groupId>spy</groupId>
 	<artifactId>digg</artifactId>
 	<name>digg</name>
-	<currentVersion>1.1</currentVersion>
+	<currentVersion>1.1.1</currentVersion>
 	<inceptionYear>2007</inceptionYear>
 	<organization>
 		<name>SPY Internetworking</name>
@@ -30,7 +30,7 @@
 	</developers>
 
 	<versions>
-		<version><name>1.1</name></version>
+		<version><name>1.1.1</name></version>
 		<version><name>1.0</name></version>
 	</versions>
 
