@@ -14,8 +14,8 @@ public abstract class PagingParameters {
 	 */
 	public static final int MAX_COUNT = 100;
 	private String sort = null;
-	private Integer count = 0;
-	private Integer offset = 0;
+	private Integer count = null;
+	private Integer offset = null;
 
 	public PagingParameters() {
 		super();
