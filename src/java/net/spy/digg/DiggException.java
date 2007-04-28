@@ -5,6 +5,8 @@ package net.spy.digg;
  */
 public class DiggException extends Exception {
 
+	private int errorId=-1;
+
 	public DiggException(String msg, Throwable t) {
 		super(msg, t);
 	}
@@ -17,4 +19,15 @@ public class DiggException extends Exception {
 		super(t);
 	}
 
+	public DiggException(String msg, int eid) {
+		super(msg + " (" + eid + ")");
+		errorId=eid;
+	}
+
+	/**
+	 * Get the error ID.
+	 */
+	public int getErrorId() {
+		return errorId;
+	}
 }

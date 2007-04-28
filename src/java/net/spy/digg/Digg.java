@@ -467,11 +467,13 @@ public class Digg {
 			if(rc != HttpStatus.SC_OK) {
 				ErrorParser ep=new ErrorParser();
 				ep.parse(is);
-				throw new DiggException(ep.getErrorMessage()
-						+ " (" + ep.getErrorId() + ")");
+				throw new DiggException(ep.getErrorMessage(),
+					ep.getErrorId());
 			}
 			rv=cls.newInstance();
 			rv.parse(is);
+		} catch(DiggException e) {
+			throw e;
 		} catch (Exception e) {
 			throw new DiggException(e);
 		} finally {
