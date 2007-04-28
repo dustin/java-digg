@@ -13,7 +13,7 @@ public abstract class PagingParameters {
 	 * The maximum value for a count.
 	 */
 	public static final int MAX_COUNT = 100;
-	private String sort = "username-desc";
+	private String sort = null;
 	private Integer count = 0;
 	private Integer offset = 0;
 
