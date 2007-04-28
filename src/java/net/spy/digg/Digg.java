@@ -277,7 +277,7 @@ public class Digg {
 	 */
 	public PagedItems<Comment> getUserComments(String user, EventParameters p)
 		throws DiggException {
-		return getComments("user/" + user + "/comments", null);
+		return getComments("user/" + user + "/comments", p);
 	}
 
 	/**
@@ -285,7 +285,7 @@ public class Digg {
 	 */
 	public PagedItems<Comment> getUserComments(Collection<String> users,
 			EventParameters p) throws DiggException {
-		return getComments("users/" + join(",", users) + "/comments", null);
+		return getComments("users/" + join(",", users) + "/comments", p);
 	}
 
 	/**
