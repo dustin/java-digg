@@ -1,5 +1,7 @@
 package net.spy.digg.parsers;
 
+import java.io.Serializable;
+
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -11,7 +13,7 @@ import net.spy.digg.User;
 /**
  * A Digg story.
  */
-class StoryImpl implements Story {
+public class StoryImpl implements Story, Serializable {
 
 	private User user;
 	private TopicContainerImpl container;

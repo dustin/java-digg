@@ -1,5 +1,7 @@
 package net.spy.digg.parsers;
 
+import java.io.Serializable;
+
 import org.w3c.dom.Node;
 
 import net.spy.digg.Comment;
@@ -7,7 +9,7 @@ import net.spy.digg.Comment;
 /**
  * Comment implementation.
  */
-public class CommentImpl extends EventImpl implements Comment {
+public class CommentImpl extends EventImpl implements Comment, Serializable {
 
 	private String comment;
 	private int down;

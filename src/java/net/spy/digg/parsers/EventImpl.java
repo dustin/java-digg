@@ -1,5 +1,7 @@
 package net.spy.digg.parsers;
 
+import java.io.Serializable;
+
 import org.w3c.dom.Node;
 
 import net.spy.digg.Event;
@@ -7,7 +9,7 @@ import net.spy.digg.Event;
 /**
  * An event.
  */
-public class EventImpl implements Event {
+public class EventImpl implements Event, Serializable {
 
 	private long date;
 	private int storyId;

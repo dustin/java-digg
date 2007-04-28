@@ -1,5 +1,6 @@
 package net.spy.digg.parsers;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import net.spy.digg.Topic;
@@ -8,8 +9,8 @@ import net.spy.digg.TopicContainer;
 /**
  * A TopicContainer contains topics.
  */
-class TopicContainerImpl extends ArrayList<Topic>
-	implements TopicContainer {
+public class TopicContainerImpl extends ArrayList<Topic>
+	implements TopicContainer, Serializable {
 
 	private String name=null;
 	private String shortName=null;

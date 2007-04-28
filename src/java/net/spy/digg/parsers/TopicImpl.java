@@ -1,11 +1,13 @@
 package net.spy.digg.parsers;
 
+import java.io.Serializable;
+
 import net.spy.digg.Topic;
 
 /**
  * A topic within digg.
  */
-class TopicImpl implements Topic {
+public class TopicImpl implements Topic, Serializable {
 
 	private String name=null;
 	private String shortName=null;

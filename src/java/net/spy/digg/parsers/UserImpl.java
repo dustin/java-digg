@@ -1,5 +1,7 @@
 package net.spy.digg.parsers;
 
+import java.io.Serializable;
+
 import org.w3c.dom.Node;
 
 import net.spy.digg.User;
@@ -7,7 +9,7 @@ import net.spy.digg.User;
 /**
  * A Digg user.
  */
-class UserImpl implements User {
+public class UserImpl implements User, Serializable {
 
 	private String name;
 	private String icon;
