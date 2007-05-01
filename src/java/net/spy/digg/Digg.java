@@ -306,6 +306,12 @@ public class Digg {
 			applyDateParam(m, "min_promote_date", p.getMinPromoteDate());
 			applyDateParam(m, "max_submit_date", p.getMaxSubmitDate());
 			applyDateParam(m, "min_submit_date", p.getMinSubmitDate());
+			if(p.getDomain() != null) {
+				m.put("domain", p.getDomain());
+			}
+			if(p.getLink() != null) {
+				m.put("link", p.getLink());
+			}
 		}
 		StoriesParser up=fetchParsed(StoriesParser.class, root, m);
 		return new PagedItems<Story>(up);
