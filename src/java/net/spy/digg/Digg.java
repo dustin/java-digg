@@ -2,6 +2,8 @@ package net.spy.digg;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +38,11 @@ public class Digg {
 	 */
 	public Digg(String k) {
 		super();
+		try {
+			new URL(k);
+		} catch(MalformedURLException e) {
+			throw new IllegalArgumentException("Invalid URL:  " + k, e);
+		}
 		appKey=k;
 	}
 
