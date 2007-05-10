@@ -35,6 +35,8 @@ public class Digg {
 
 	/**
 	 * Construct a Digg interface with the given app key.
+	 *
+	 * @throws IllegalArgumentException if k is not a valid URL
 	 */
 	public Digg(String k) {
 		super();
