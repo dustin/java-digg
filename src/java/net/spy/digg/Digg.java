@@ -28,6 +28,8 @@ public class Digg {
 
 	private static final String BASE_URL="http://services.digg.com/";
 
+	private HttpClientFactory clientFactory=new DefaultHttpClientFactory();
+
 	private Map<Integer, String> errors=null;
 	private Map<String, TopicContainer> containers=null;
 
@@ -50,6 +52,17 @@ public class Digg {
 			throw new IllegalArgumentException("Invalid URI:  " + k, e);
 		}
 		appKey=k;
+	}
+
+	/**
+	 * Set the http client factory that will be used to construct HttpClient
+	 * instances for digg service requests.
+	 */
+	public void setHttpClientFactory(HttpClientFactory to) {
+		if(to == null) {
+			throw new NullPointerException("HttpClientFactory may not be null");
+		}
+		clientFactory=to;
 	}
 
 	/**
@@ -472,7 +485,7 @@ public class Digg {
 			Map<String, String> params)
 		throws DiggException {
 		T rv=null;
-		HttpClient client=new HttpClient();
+		HttpClient client = clientFactory.getHttpClient();
 		client.getParams().setParameter("http.useragent","SPY digg client");
 		GetMethod method=new GetMethod(BASE_URL + u);
 		params.put("appkey", appKey);
