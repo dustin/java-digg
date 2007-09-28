@@ -13,8 +13,8 @@ public abstract class TimePagedItemParser<T> extends PagedItemParser<T> {
 	@Override
 	protected void parseCommonFields(Document doc) {
 		super.parseCommonFields(doc);
-		Node root=doc.getFirstChild();
-		String s = getAttr(root, "min_date");
+		final Node root=doc.getFirstChild();
+		final String s = getAttr(root, "min_date");
 		if(s != null) {
 			minDate=1000*Long.parseLong(s);
 		}

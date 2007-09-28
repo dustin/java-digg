@@ -11,20 +11,20 @@ import net.spy.digg.Comment;
  */
 public class CommentImpl extends EventImpl implements Comment, Serializable {
 
-	private String comment;
-	private int down;
-	private int up;
+	private final String comment;
+	private final int down;
+	private final int up;
 	private Integer replyId;
 
 	CommentImpl(Node n) {
 		super(n);
 		down=Integer.parseInt(BaseParser.getAttr(n, "down"));
 		up=Integer.parseInt(BaseParser.getAttr(n, "up"));
-		String s=BaseParser.getAttr(n, "replyto");
+		final String s=BaseParser.getAttr(n, "replyto");
 		if(s != null) {
 			replyId=new Integer(s);
 		}
-		Node c = n.getFirstChild();
+		final Node c = n.getFirstChild();
 		assert c.getNodeType() == Node.CDATA_SECTION_NODE
 			: "Expected CDATA, got " + c;
 		comment=c.getNodeValue();

@@ -19,15 +19,15 @@ public class StoryImpl implements Story, Serializable {
 	private TopicContainerImpl container;
 	private TopicImpl topic;
 
-	private int id;
-	private String link;
-	private String diggLink;
-	private String status;
+	private final int id;
+	private final String link;
+	private final String diggLink;
+	private final String status;
 	private String title;
 	private String description;
-	private long submitDate;
-	private int diggs;
-	private int comments;
+	private final long submitDate;
+	private final int diggs;
+	private final int comments;
 
 	StoryImpl(Node n) {
 		super();
@@ -40,10 +40,10 @@ public class StoryImpl implements Story, Serializable {
 		diggLink=BaseParser.getAttr(n, "href");
 		status=BaseParser.getAttr(n, "status");
 
-		NodeList nl=n.getChildNodes();
+		final NodeList nl=n.getChildNodes();
 		for(int i=0; i<nl.getLength(); i++) {
-			Node cn=nl.item(i);
-			String nm=cn.getNodeName();
+			final Node cn=nl.item(i);
+			final String nm=cn.getNodeName();
 			if(nm.equals("title")) {
 				title=cn.getFirstChild().getNodeValue();
 			} else if(nm.equals("description")) {

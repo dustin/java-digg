@@ -26,14 +26,14 @@ public abstract class BaseParser {
 	protected Document getDocument(InputStream is, String rootEl)
 		throws SAXException, IOException {
 		try {
-			DocumentBuilder docbuilder =
+			final DocumentBuilder docbuilder =
 				DocumentBuilderFactory.newInstance().newDocumentBuilder();
-		    Document doc=docbuilder.parse(is);
+		    final Document doc=docbuilder.parse(is);
 
 	        assert doc.getFirstChild().getNodeName().equals(rootEl);
 
 			return doc;
-		} catch (ParserConfigurationException e) {
+		} catch (final ParserConfigurationException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -47,7 +47,7 @@ public abstract class BaseParser {
 	 * Parse from the given input stream.
 	 */
 	public void parse(InputStream is) throws SAXException, IOException {
-		Document doc=getDocument(is, getRootElementName());
+		final Document doc=getDocument(is, getRootElementName());
 		handleDocument(doc);
 	}
 

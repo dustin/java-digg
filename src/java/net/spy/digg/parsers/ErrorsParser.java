@@ -26,9 +26,9 @@ public class ErrorsParser extends BaseParser {
 		throws SAXException, IOException {
 
         errors=new HashMap<Integer, String>();
-        NodeList nl=doc.getDocumentElement().getElementsByTagName("error");
+        final NodeList nl=doc.getDocumentElement().getElementsByTagName("error");
         for(int i=0; i<nl.getLength(); i++) {
-        	Node n=nl.item(i);
+        	final Node n=nl.item(i);
         	errors.put(Integer.parseInt(getAttr(n, "code")),
         			getAttr(n, "message"));
         }

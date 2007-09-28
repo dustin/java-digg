@@ -11,11 +11,11 @@ import net.spy.digg.Event;
  */
 public class EventImpl implements Event, Serializable {
 
-	private long date;
-	private int storyId;
-	private int eventId;
-	private String user;
-	private String status;
+	private final long date;
+	private final int storyId;
+	private final int eventId;
+	private final String user;
+	private final String status;
 
 	/**
 	 * Construct an Event.

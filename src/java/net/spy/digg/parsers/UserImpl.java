@@ -11,10 +11,10 @@ import net.spy.digg.User;
  */
 public class UserImpl implements User, Serializable {
 
-	private String name;
-	private String icon;
-	private long registered;
-	private int profileviews;
+	private final String name;
+	private final String icon;
+	private final long registered;
+	private final int profileviews;
 
 	public UserImpl(Node n) {
 		super();

@@ -23,7 +23,7 @@ public class StoriesParser extends TimePagedItemParser<Story> {
 		throws SAXException, IOException {
 		parseCommonFields(doc);
 
-		NodeList nl=doc.getElementsByTagName("story");
+		final NodeList nl=doc.getElementsByTagName("story");
 		for(int i=0; i<nl.getLength(); i++) {
 			addItem(new StoryImpl(nl.item(i)));
 		}

@@ -22,7 +22,7 @@ public class ErrorParser extends BaseParser {
 	@Override
 	protected void handleDocument(Document doc)
 		throws SAXException, IOException {
-        Node n=doc.getFirstChild();
+        final Node n=doc.getFirstChild();
     	errorId=Integer.parseInt(getAttr(n, "code"));
     	errorMessage=getAttr(n, "message");
 	}
@@ -40,5 +40,5 @@ public class ErrorParser extends BaseParser {
 	public String getErrorMessage() {
 		return errorMessage;
 	}
-	
+
 }

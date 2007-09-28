@@ -16,13 +16,13 @@ public abstract class PagedItemParser<T> extends BaseParser {
 	private int offset;
 	private int count;
 
-	private Collection<T> items=new ArrayList<T>();
+	private final Collection<T> items=new ArrayList<T>();
 
 	/**
 	 * Extract the common paged stuff from the given document.
 	 */
 	protected void parseCommonFields(Document doc) {
-		Node root=doc.getFirstChild();
+		final Node root=doc.getFirstChild();
 		timestamp=1000*Long.parseLong(getAttr(root, "timestamp"));
 		total=Integer.parseInt(getAttr(root, "total"));
 		offset=Integer.parseInt(getAttr(root, "offset"));

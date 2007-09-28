@@ -24,10 +24,10 @@ public class EventsParser extends TimePagedItemParser<Event> {
 		throws SAXException, IOException {
 		parseCommonFields(doc);
 
-		NodeList nl=doc.getFirstChild().getChildNodes();
+		final NodeList nl=doc.getFirstChild().getChildNodes();
 		for(int i=0; i<nl.getLength(); i++) {
-			Node n=nl.item(i);
-			String nm=n.getNodeName();
+			final Node n=nl.item(i);
+			final String nm=n.getNodeName();
 			if(nm.equals("digg")) {
 				addItem(new EventImpl(n));
 			} else if(nm.equals("comment")) {

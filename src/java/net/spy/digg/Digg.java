@@ -33,7 +33,7 @@ public class Digg {
 	private Map<Integer, String> errors=null;
 	private Map<String, TopicContainer> containers=null;
 
-	private String appKey;
+	private final String appKey;
 
 	/**
 	 * Construct a Digg interface with the given app key.
@@ -43,12 +43,12 @@ public class Digg {
 	public Digg(String k) {
 		super();
 		try {
-			URI u=new URI(k);
+			final URI u=new URI(k);
 			if(u.getScheme() == null) {
 				throw new IllegalArgumentException("Invalid URI (no scheme): "
 					+ k);
 			}
-		} catch(URISyntaxException e) {
+		} catch(final URISyntaxException e) {
 			throw new IllegalArgumentException("Invalid URI:  " + k, e);
 		}
 		appKey=k;
@@ -70,7 +70,7 @@ public class Digg {
 	 */
 	public Map<Integer, String> getErrors() throws DiggException {
 		if(errors == null) {
-			ErrorsParser ep=
+			final ErrorsParser ep=
 				fetchParsed(ErrorsParser.class, "errors");
 			errors=ep.getErrors();
 		}
@@ -89,7 +89,7 @@ public class Digg {
 	 */
 	public Map<String, TopicContainer> getTopics() throws DiggException {
 		if(containers == null) {
-			TopicsParser tp=fetchParsed(TopicsParser.class, "topics");
+			final TopicsParser tp=fetchParsed(TopicsParser.class, "topics");
 			containers=tp.getContainers();
 		}
 		return containers;
@@ -100,9 +100,9 @@ public class Digg {
 	 */
 	public Topic getTopic(String top) throws DiggException {
 		Topic rv=null;
-		Map<String, TopicContainer> topics = getTopics();
-		for(Map.Entry<String, TopicContainer> me : topics.entrySet()) {
-			for(Topic t : me.getValue()) {
+		final Map<String, TopicContainer> topics = getTopics();
+		for(final Map.Entry<String, TopicContainer> me : topics.entrySet()) {
+			for(final Topic t : me.getValue()) {
 				if(t.getName().equals(top) || t.getShortName().equals(top)) {
 					assert rv == null : "Found duplicate topic match";
 					rv=t;
@@ -114,11 +114,11 @@ public class Digg {
 
 	private PagedItems<User> getUsers(String root, UserParameters p)
 		throws DiggException {
-		Map<String, String> m=new HashMap<String, String>();
+		final Map<String, String> m=new HashMap<String, String>();
 		if(p != null) {
 			applyPagingParams(p, m);
 		}
-		UsersParser up=fetchParsed(UsersParser.class, root, m);
+		final UsersParser up=fetchParsed(UsersParser.class, root, m);
 		return new PagedItems<User>(up);
 	}
 
@@ -164,8 +164,8 @@ public class Digg {
 	 * Get the specific user.
 	 */
 	public User getUser(String name) throws DiggException {
-		UsersParser up=fetchParsed(UsersParser.class, "user/" + name);
-		Map<String, User> users = up.getUsers();
+		final UsersParser up=fetchParsed(UsersParser.class, "user/" + name);
+		final Map<String, User> users = up.getUsers();
 		assert users.size() < 2 : "Too many users returned.";
 		User rv=null;
 		if(!users.isEmpty()) {
@@ -183,13 +183,13 @@ public class Digg {
 
 	private PagedItems<Event> getEvents(String root, EventParameters p)
 		throws DiggException {
-		Map<String, String> m=new HashMap<String, String>();
+		final Map<String, String> m=new HashMap<String, String>();
 		if(p != null) {
 			applyPagingParams(p, m);
 			applyDateParam(m, "max_date", p.getMaxDate());
 			applyDateParam(m, "min_date", p.getMinDate());
 		}
-		EventsParser up=fetchParsed(EventsParser.class, root, m);
+		final EventsParser up=fetchParsed(EventsParser.class, root, m);
 		return new PagedItems<Event>(up);
 	}
 
@@ -250,8 +250,8 @@ public class Digg {
 
 	private PagedItems<Comment> getComments(String root, EventParameters p)
 		throws DiggException {
-		PagedItems<Comment> rv=new PagedItems<Comment>();
-		for(Event e : getEvents(root, p)) {
+		final PagedItems<Comment> rv=new PagedItems<Comment>();
+		for(final Event e : getEvents(root, p)) {
 			assert e instanceof Comment : "Expected a comment, got " + e;
 			rv.add((Comment)e);
 		}
@@ -325,7 +325,7 @@ public class Digg {
 
 	private PagedItems<Story> getStories(String root, StoryParameters p)
 		throws DiggException {
-		Map<String, String> m=new HashMap<String, String>();
+		final Map<String, String> m=new HashMap<String, String>();
 		if(p != null) {
 			applyPagingParams(p, m);
 			applyDateParam(m, "max_promote_date", p.getMaxPromoteDate());
@@ -339,7 +339,7 @@ public class Digg {
 				m.put("link", p.getLink());
 			}
 		}
-		StoriesParser up=fetchParsed(StoriesParser.class, root, m);
+		final StoriesParser up=fetchParsed(StoriesParser.class, root, m);
 		return new PagedItems<Story>(up);
 	}
 
@@ -431,7 +431,7 @@ public class Digg {
 	 * Get the story with the given id.
 	 */
 	public Story getStory(int id) throws DiggException {
-		PagedItems<Story> c=getStories("story/" + id, null);
+		final PagedItems<Story> c=getStories("story/" + id, null);
 		assert c.size() < 2 : "Too many results for " + id;
 		Story rv=null;
 		if(!c.isEmpty()) {
@@ -444,7 +444,7 @@ public class Digg {
 	 * Get the story with the given clean URL.
 	 */
 	public Story getStory(String cleanUrl) throws DiggException {
-		PagedItems<Story> c=getStories("story/" + cleanUrl, null);
+		final PagedItems<Story> c=getStories("story/" + cleanUrl, null);
 		assert c.size() < 2 : "Too many results for " + cleanUrl;
 		Story rv=null;
 		if(!c.isEmpty()) {
@@ -463,8 +463,8 @@ public class Digg {
 
 	private String join(String j, Collection<?> c) {
 		boolean first=true;
-		StringBuilder sb=new StringBuilder();
-		for(Object o : c) {
+		final StringBuilder sb=new StringBuilder();
+		for(final Object o : c) {
 			if(first) {
 				first=false;
 			} else {
@@ -477,7 +477,7 @@ public class Digg {
 
 	private <T extends BaseParser> T fetchParsed(Class<T> cls, String u)
 		throws DiggException {
-		Map<String, String> m=new HashMap<String, String>();
+		final Map<String, String> m=new HashMap<String, String>();
 		return fetchParsed(cls, u, m);
 	}
 
@@ -485,35 +485,35 @@ public class Digg {
 			Map<String, String> params)
 		throws DiggException {
 		T rv=null;
-		HttpClient client = clientFactory.getHttpClient();
+		final HttpClient client = clientFactory.getHttpClient();
 		client.getParams().setParameter("http.useragent","SPY digg client");
-		GetMethod method=new GetMethod(BASE_URL + u);
+		final GetMethod method=new GetMethod(BASE_URL + u);
 		params.put("appkey", appKey);
 		method.setQueryString(makeQueryString(params));
-		
+
 		InputStream is=null;
 		try {
 			System.out.println("Executing " + method.getURI());
-			int rc=client.executeMethod(method);
+			final int rc=client.executeMethod(method);
 			is=method.getResponseBodyAsStream();
 			if(rc != HttpStatus.SC_OK) {
-				ErrorParser ep=new ErrorParser();
+				final ErrorParser ep=new ErrorParser();
 				ep.parse(is);
 				throw new DiggException(ep.getErrorMessage(),
 					ep.getErrorId());
 			}
 			rv=cls.newInstance();
 			rv.parse(is);
-		} catch(DiggException e) {
+		} catch(final DiggException e) {
 			throw e;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			throw new DiggException(e);
 		} finally {
 			method.releaseConnection();
 			if(is != null) {
 				try {
 					is.close();
-				} catch (IOException e) {
+				} catch (final IOException e) {
 					throw new DiggException(e);
 				}
 			}
@@ -522,9 +522,9 @@ public class Digg {
 	}
 
 	private NameValuePair[] makeQueryString(Map<String, String> params) {
-		NameValuePair[] rv=new NameValuePair[params.size()];
+		final NameValuePair[] rv=new NameValuePair[params.size()];
 		int i=0;
-		for(Map.Entry<String, String> me : params.entrySet()) {
+		for(final Map.Entry<String, String> me : params.entrySet()) {
 			rv[i++]=new NameValuePair(me.getKey(), me.getValue());
 		}
 		return rv;

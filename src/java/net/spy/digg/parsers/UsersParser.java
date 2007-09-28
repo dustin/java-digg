@@ -25,10 +25,10 @@ public class UsersParser extends PagedItemParser<User> {
 		parseCommonFields(doc);
 		users=new HashMap<String, User>(getCount());
 
-		NodeList nl=doc.getElementsByTagName("user");
+		final NodeList nl=doc.getElementsByTagName("user");
 		for(int i=0; i<nl.getLength(); i++) {
-			Node n=nl.item(i);
-			UserImpl u=new UserImpl(n);
+			final Node n=nl.item(i);
+			final UserImpl u=new UserImpl(n);
 			users.put(u.getName(), u);
 			addItem(u);
 		}

@@ -31,13 +31,13 @@ public class TopicsParser extends BaseParser {
 		containers=new HashMap<String, TopicContainer>();
 
 		// Build out the topics.
-		NodeList nl=doc.getDocumentElement().getElementsByTagName("topic");
+		final NodeList nl=doc.getDocumentElement().getElementsByTagName("topic");
 		for(int i=0; i<nl.getLength(); i++) {
-			Node n=nl.item(i);
-			String name=getAttr(n, "name");
-			String shortName=getAttr(n, "short_name");
+			final Node n=nl.item(i);
+			final String name=getAttr(n, "name");
+			final String shortName=getAttr(n, "short_name");
 
-			NodeList nlTmp=n.getChildNodes();
+			final NodeList nlTmp=n.getChildNodes();
 			Node cn=null;
 			for(int j=0; j<nlTmp.getLength(); j++) {
 				if(nlTmp.item(j).getNodeName().equals("container")) {
@@ -47,8 +47,8 @@ public class TopicsParser extends BaseParser {
 			assert cn != null : "Couldn't find a container";
 			assert cn.getNodeName().equals("container")
 				: "Expected container, got " + cn.getNodeName();
-			String cname=getAttr(cn, "name");
-			String cshortName=getAttr(cn, "short_name");
+			final String cname=getAttr(cn, "name");
+			final String cshortName=getAttr(cn, "short_name");
 
 			TopicContainer tc=containers.get(cshortName);
 			if(tc == null) {
