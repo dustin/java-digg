@@ -3,7 +3,6 @@ package net.spy.digg.parsers;
 import java.io.FileInputStream;
 
 import junit.framework.TestCase;
-
 import net.spy.digg.Comment;
 import net.spy.digg.Event;
 import net.spy.digg.Story;
@@ -81,7 +80,7 @@ public class ParsersTest extends TestCase {
 
 	public void testCommentsParser() throws Exception {
 		EventsParser ep=doParse("comments.xml", EventsParser.class);
-		// <events timestamp="1177142439" min_date="1177138830" total="414" 
+		// <events timestamp="1177142439" min_date="1177138830" total="414"
 		// offset="0" count="10">
 		assertEquals(10, ep.getItems().size());
 		assertEquals(1177142439000L, ep.getTimestamp());
@@ -98,8 +97,30 @@ public class ParsersTest extends TestCase {
 		assertEquals(0, c.getDiggsDown());
 		assertEquals(1814797, c.getStoryId());
 		assertTrue(c.getComment().contains("both of you"));
-		
 	}
+
+	public void testCommentsParserEmptyReplyTo() throws Exception {
+		EventsParser ep=doParse("comments_empty_replyto.xml",
+			EventsParser.class);
+		// <events timestamp="1177142439" min_date="1177138830" total="414"
+		// offset="0" count="10">
+		assertEquals(20, ep.getItems().size());
+		assertEquals(1194025866000L, ep.getTimestamp());
+		assertEquals(1192816190000L, ep.getMinDate());
+		assertEquals(20, ep.getCount());
+		assertEquals(27, ep.getTotal());
+		assertEquals(0, ep.getOffset());
+
+		Comment c=(Comment)ep.getItems().iterator().next();
+		assertEquals(10286777, c.getEventId());
+		assertEquals(new Integer(10286548), c.getReplyId());
+		assertEquals("cdmarcus", c.getUser());
+		assertEquals(3, c.getDiggsUp());
+		assertEquals(0, c.getDiggsDown());
+		assertEquals(3997943, c.getStoryId());
+		assertTrue(c.getComment().contains("Facebook application"));
+	}
+
 
 	public void testUsersParser() throws Exception {
 		UsersParser up=doParse("users.xml", UsersParser.class);

@@ -2,9 +2,9 @@ package net.spy.digg.parsers;
 
 import java.io.Serializable;
 
-import org.w3c.dom.Node;
-
 import net.spy.digg.Comment;
+
+import org.w3c.dom.Node;
 
 /**
  * Comment implementation.
@@ -21,7 +21,7 @@ public class CommentImpl extends EventImpl implements Comment, Serializable {
 		down=Integer.parseInt(BaseParser.getAttr(n, "down"));
 		up=Integer.parseInt(BaseParser.getAttr(n, "up"));
 		final String s=BaseParser.getAttr(n, "replyto");
-		if(s != null) {
+		if(s != null && s.length() > 0) {
 			replyId=new Integer(s);
 		}
 		final Node c = n.getFirstChild();
