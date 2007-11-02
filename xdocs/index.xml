@@ -54,7 +54,7 @@ Collection&lt;Story&gt; stories=d.getStories(null);
       <h3>Source Code</h3>
       <p>
         The source can be downloaded or checked out from my
-        <a href="http://rubik.west.spy.net/hg/java/digg/">mercurial
+        <a href="http://hg.west.spy.net/hg/java/digg/">mercurial
         repository</a>.
       </p>
       <h3>Dependencies</h3>
