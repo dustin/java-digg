@@ -14,7 +14,7 @@ public class CommentImpl extends EventImpl implements Comment, Serializable {
 	private final String comment;
 	private final int down;
 	private final int up;
-	private Integer replyId;
+	private final Integer replyId;
 
 	CommentImpl(Node n) {
 		super(n);
@@ -23,6 +23,8 @@ public class CommentImpl extends EventImpl implements Comment, Serializable {
 		final String s=BaseParser.getAttr(n, "replyto");
 		if(s != null && s.length() > 0) {
 			replyId=new Integer(s);
+		} else {
+			replyId=null;
 		}
 		final Node c = n.getFirstChild();
 		assert c.getNodeType() == Node.CDATA_SECTION_NODE

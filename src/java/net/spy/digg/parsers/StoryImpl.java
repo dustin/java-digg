@@ -15,16 +15,16 @@ import net.spy.digg.User;
  */
 public class StoryImpl implements Story, Serializable {
 
-	private User user;
-	private TopicContainerImpl container;
-	private TopicImpl topic;
+	private final User user;
+	private final TopicContainer container;
+	private final Topic topic;
 
 	private final int id;
 	private final String link;
 	private final String diggLink;
 	private final String status;
-	private String title;
-	private String description;
+	private final String title;
+	private final String description;
 	private final long submitDate;
 	private final int diggs;
 	private final int comments;
@@ -40,21 +40,27 @@ public class StoryImpl implements Story, Serializable {
 		diggLink=BaseParser.getAttr(n, "href");
 		status=BaseParser.getAttr(n, "status");
 
+		String t=null;
+		String d=null;
+		User u=null;
+		Topic top=null;
+		TopicContainer tc=null;
+
 		final NodeList nl=n.getChildNodes();
 		for(int i=0; i<nl.getLength(); i++) {
 			final Node cn=nl.item(i);
 			final String nm=cn.getNodeName();
 			if(nm.equals("title")) {
-				title=cn.getFirstChild().getNodeValue();
+				t=cn.getFirstChild().getNodeValue();
 			} else if(nm.equals("description")) {
-				description=cn.getFirstChild().getNodeValue();
+				d=cn.getFirstChild().getNodeValue();
 			} else if(nm.equals("user")) {
-				user=new UserImpl(cn);
+				u=new UserImpl(cn);
 			} else if(nm.equals("topic")) {
-				topic=new TopicImpl(BaseParser.getAttr(cn, "name"),
+				top=new TopicImpl(BaseParser.getAttr(cn, "name"),
 						BaseParser.getAttr(cn, "short_name"));
 			} else if(nm.equals("container")) {
-				container=new TopicContainerImpl(BaseParser.getAttr(cn, "name"),
+				tc=new TopicContainerImpl(BaseParser.getAttr(cn, "name"),
 						BaseParser.getAttr(cn, "short_name"));
 			} else if(cn.getNodeType() == Node.TEXT_NODE) {
 				// skipping random text node
@@ -62,9 +68,17 @@ public class StoryImpl implements Story, Serializable {
 				assert false : "Unexpected node: " + cn;
 			}
 		}
+
+		// Set the final fields.
+		title=t;
+		description=d;
+		user=u;
+		topic=top;
+		container=tc;
+
 		// Add the topic to the container.
 		container.add(topic);
-		topic.setContainerName(container.getShortName());
+		((TopicImpl)topic).setContainerName(container.getShortName());
 	}
 
 	/* (non-Javadoc)

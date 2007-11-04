@@ -17,7 +17,8 @@ import net.spy.digg.TopicContainer;
  */
 public class TopicsParser extends BaseParser {
 
-	private Map<String, TopicContainer> containers;
+	private final Map<String, TopicContainer> containers
+		=new HashMap<String, TopicContainer>();
 
 	@Override
 	protected String getRootElementName() {
@@ -27,8 +28,6 @@ public class TopicsParser extends BaseParser {
 	@Override
 	protected void handleDocument(Document doc)
 		throws SAXException, IOException {
-		// First, build out all of the containers.
-		containers=new HashMap<String, TopicContainer>();
 
 		// Build out the topics.
 		final NodeList nl=doc.getDocumentElement().getElementsByTagName("topic");

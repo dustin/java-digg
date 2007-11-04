@@ -17,13 +17,12 @@ import net.spy.digg.User;
  */
 public class UsersParser extends PagedItemParser<User> {
 
-	private Map<String, User> users=new HashMap<String, User>();
+	private final Map<String, User> users=new HashMap<String, User>();
 
 	@Override
 	protected void handleDocument(Document doc)
 		throws SAXException, IOException {
 		parseCommonFields(doc);
-		users=new HashMap<String, User>(getCount());
 
 		final NodeList nl=doc.getElementsByTagName("user");
 		for(int i=0; i<nl.getLength(); i++) {

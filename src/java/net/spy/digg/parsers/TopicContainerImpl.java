@@ -12,8 +12,8 @@ import net.spy.digg.TopicContainer;
 public class TopicContainerImpl extends ArrayList<Topic>
 	implements TopicContainer, Serializable {
 
-	private String name=null;
-	private String shortName=null;
+	private final String name;
+	private final String shortName;
 
 	/**
 	 * Construct a TopicContainer with the given name and short name.

@@ -1,6 +1,7 @@
 package net.spy.digg;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import net.spy.digg.parsers.PagedItemParser;
 
@@ -11,21 +12,26 @@ import net.spy.digg.parsers.PagedItemParser;
  */
 public class PagedItems<T> extends ArrayList<T> {
 
-	private long timestamp;
-	private int total;
-	private int offset;
-	private int count;
-
-	PagedItems() {
-		super();
-	}
+	private final long timestamp;
+	private final int total;
+	private final int offset;
+	private final int count;
 
 	PagedItems(PagedItemParser<T> p) {
-		super(p.getItems());
-		timestamp=p.getTimestamp();
-		total=p.getTotal();
-		offset=p.getOffset();
-		count=p.getCount();
+		this(p.getItems(), p.getTimestamp(), p.getTotal(), p.getOffset(),
+			p.getCount());
+	}
+
+	PagedItems(Collection<T> c) {
+		this(c, 0, 0, 0, 0);
+	}
+
+	PagedItems(Collection<T> c, long ts, int t, int o, int cnt) {
+		super(c);
+		timestamp=ts;
+		total=t;
+		offset=o;
+		count=cnt;
 	}
 
 	/**

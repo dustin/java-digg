@@ -9,10 +9,10 @@ import net.spy.digg.Topic;
  */
 public class TopicImpl implements Topic, Serializable {
 
-	private String name=null;
-	private String shortName=null;
+	private final String name;
+	private final String shortName;
 
-	private String containerName=null;
+	private String containerName;
 
 	/**
 	 * Construct a topic.

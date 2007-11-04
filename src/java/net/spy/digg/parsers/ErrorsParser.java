@@ -14,7 +14,7 @@ import org.xml.sax.SAXException;
  */
 public class ErrorsParser extends BaseParser {
 
-	private Map<Integer, String> errors=null;
+	private final Map<Integer, String> errors=new HashMap<Integer, String>();
 
 	@Override
 	protected String getRootElementName() {
@@ -25,7 +25,6 @@ public class ErrorsParser extends BaseParser {
 	protected void handleDocument(Document doc)
 		throws SAXException, IOException {
 
-        errors=new HashMap<Integer, String>();
         final NodeList nl=doc.getDocumentElement().getElementsByTagName("error");
         for(int i=0; i<nl.getLength(); i++) {
         	final Node n=nl.item(i);

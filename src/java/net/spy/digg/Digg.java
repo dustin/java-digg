@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -251,12 +252,12 @@ public class Digg {
 
 	private PagedItems<Comment> getComments(String root, EventParameters p)
 		throws DiggException {
-		final PagedItems<Comment> rv=new PagedItems<Comment>();
+		final Collection<Comment> c=new ArrayList<Comment>();
 		for(final Event e : getEvents(root, p)) {
 			assert e instanceof Comment : "Expected a comment, got " + e;
-			rv.add((Comment)e);
+			c.add((Comment)e);
 		}
-		return rv;
+		return new PagedItems<Comment>(c);
 	}
 
 	/**
