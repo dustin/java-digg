@@ -99,6 +99,7 @@ public class ParsersTest extends TestCase {
 		assertEquals(0, c.getDiggsDown());
 		assertEquals(1814797, c.getStoryId());
 		assertTrue(c.getComment().contains("both of you"));
+		assertEquals("{Comment by mikesbaker}", String.valueOf(c));
 	}
 
 	public void testCommentsParserEmptyReplyTo() throws Exception {
