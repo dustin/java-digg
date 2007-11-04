@@ -3,10 +3,8 @@ package net.spy.digg;
 /**
  * Parameters for story requests.
  */
-public class StoryParameters extends PagingParameters {
+public class StoryParameters extends TimestampedPagingParameters {
 
-	private Long minSubmitDate;
-	private Long maxSubmitDate;
 	private Long minPromoteDate;
 	private Long maxPromoteDate;
 	private String domain;
@@ -49,18 +47,6 @@ public class StoryParameters extends PagingParameters {
 		maxPromoteDate = to;
 	}
 	/**
-	 * Get the maximum submission date.
-	 */
-	public Long getMaxSubmitDate() {
-		return maxSubmitDate;
-	}
-	/**
-	 * Set the maximum submission date.
-	 */
-	public void setMaxSubmitDate(Long to) {
-		maxSubmitDate = to;
-	}
-	/**
 	 * Get the minimum promotion date.
 	 */
 	public Long getMinPromoteDate() {
@@ -71,18 +57,6 @@ public class StoryParameters extends PagingParameters {
 	 */
 	public void setMinPromoteDate(Long to) {
 		minPromoteDate = to;
-	}
-	/**
-	 * Get the minimum submission date.
-	 */
-	public Long getMinSubmitDate() {
-		return minSubmitDate;
-	}
-	/**
-	 * Set the minimum submission date.
-	 */
-	public void setMinSubmitDate(Long to) {
-		minSubmitDate = to;
 	}
 
 }

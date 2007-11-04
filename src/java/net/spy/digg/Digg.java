@@ -17,6 +17,7 @@ import net.spy.digg.parsers.BaseParser;
 import net.spy.digg.parsers.ErrorParser;
 import net.spy.digg.parsers.ErrorsParser;
 import net.spy.digg.parsers.EventsParser;
+import net.spy.digg.parsers.GalleriesParser;
 import net.spy.digg.parsers.StoriesParser;
 import net.spy.digg.parsers.TopicsParser;
 import net.spy.digg.parsers.UsersParser;
@@ -327,11 +328,9 @@ public class Digg {
 		throws DiggException {
 		final Map<String, String> m=new HashMap<String, String>();
 		if(p != null) {
-			applyPagingParams(p, m);
+			applyTimedPagingParameters(p, m);
 			applyDateParam(m, "max_promote_date", p.getMaxPromoteDate());
 			applyDateParam(m, "min_promote_date", p.getMinPromoteDate());
-			applyDateParam(m, "max_submit_date", p.getMaxSubmitDate());
-			applyDateParam(m, "min_submit_date", p.getMinSubmitDate());
 			if(p.getDomain() != null) {
 				m.put("domain", p.getDomain());
 			}
@@ -341,6 +340,13 @@ public class Digg {
 		}
 		final StoriesParser up=fetchParsed(StoriesParser.class, root, m);
 		return new PagedItems<Story>(up);
+	}
+
+	private void applyTimedPagingParameters(TimestampedPagingParameters p,
+			final Map<String, String> m) {
+		applyPagingParams(p, m);
+		applyDateParam(m, "max_submit_date", p.getMaxSubmitDate());
+		applyDateParam(m, "min_submit_date", p.getMinSubmitDate());
 	}
 
 	/**
@@ -459,6 +465,95 @@ public class Digg {
 	public PagedItems<Story> getUserStories(String u, StoryParameters p)
 		throws DiggException {
 		return getStories("user/" + u + "/submissions", p);
+	}
+
+	private PagedItems<GalleryPhoto> getGalleryPhotos(String root,
+			GalleryPhotoParameters p) throws DiggException {
+
+		final Map<String, String> m=new HashMap<String, String>();
+		if(p != null) {
+			applyTimedPagingParameters(p, m);
+		}
+		final GalleriesParser up=fetchParsed(GalleriesParser.class, root, m);
+		return new PagedItems<GalleryPhoto>(up);
+	}
+
+	/**
+	 * Get all gallery photos.
+	 */
+	public PagedItems<GalleryPhoto> getAllGalleryPhotos(
+		GalleryPhotoParameters params) throws DiggException {
+		return getGalleryPhotos("galleryphotos", params);
+	}
+
+	/**
+	 * Get the gallery photos with the given IDs.
+	 */
+	public PagedItems<GalleryPhoto> getAllGalleryPhotos(
+		GalleryPhotoParameters params, Collection<Integer> ids)
+		throws DiggException {
+		return getGalleryPhotos("galleryphotos/" + join(",", ids), params);
+	}
+
+	/**
+	 * Get the gallery photo with the given ID.
+	 */
+	public GalleryPhoto getAllGalleryPhotos(
+		GalleryPhotoParameters params, int id)
+		throws DiggException {
+		Collection<GalleryPhoto> photos=getGalleryPhotos(
+			"galleryphotos/" + id, params);
+		assert photos.size() == 1 : "Incorrect number of photos returned:  "
+			+ photos.size();
+		return photos.iterator().next();
+	}
+
+	/**
+	 * Get all comments for gallery photos.
+	 */
+	public PagedItems<Comment> getGalleryComments(EventParameters p)
+		throws DiggException {
+		return getComments("galleryphotos/comments", p);
+	}
+
+	/**
+	 * Get all comments for all gallery photos.
+	 */
+	public PagedItems<Comment> getGalleryComments(Collection<Integer> ids,
+			EventParameters p)
+		throws DiggException {
+		return getComments("galleryphotos/" + join(",", ids) + "/comments", p);
+	}
+
+	/**
+	 * Get all comments for the given photo.
+	 */
+	public PagedItems<Comment> getGalleryComments(int id,
+			EventParameters p)
+		throws DiggException {
+		return getComments("galleryphotos/" + id + "/comments", p);
+	}
+
+	/**
+	 * Get a specific comment for the given photo.
+	 */
+	public Comment getGalleryComments(int gid, int cid, EventParameters p)
+		throws DiggException {
+		Collection<Comment>  comments=getComments(
+			"galleryphotos/" + gid + "/comment/" + cid, p);
+		assert comments.size() == 1 : "Wrong number of comments returned: "
+			+ comments.size();
+		return comments.iterator().next();
+	}
+
+	/**
+	 * Get all comments for the given photo.
+	 */
+	public PagedItems<Comment> getGalleryCommentReplies(int gid, int cid,
+			EventParameters p)
+		throws DiggException {
+		return getComments("galleryphotos/" + gid + "/comments/"
+				+ cid + "/replies", p);
 	}
 
 	private String join(String j, Collection<?> c) {

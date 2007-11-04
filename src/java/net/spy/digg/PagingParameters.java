@@ -3,7 +3,7 @@ package net.spy.digg;
 /**
  * Base class for paging parameters.
  */
-public abstract class PagingParameters {
+abstract class PagingParameters {
 
 	/**
 	 * The minimum value for a count.

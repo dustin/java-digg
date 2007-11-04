@@ -1,10 +1,12 @@
 package net.spy.digg.parsers;
 
 import java.io.FileInputStream;
+import java.net.URL;
 
 import junit.framework.TestCase;
 import net.spy.digg.Comment;
 import net.spy.digg.Event;
+import net.spy.digg.GalleryPhoto;
 import net.spy.digg.Story;
 import net.spy.digg.Topic;
 import net.spy.digg.TopicContainer;
@@ -119,6 +121,7 @@ public class ParsersTest extends TestCase {
 		assertEquals(0, c.getDiggsDown());
 		assertEquals(3997943, c.getStoryId());
 		assertTrue(c.getComment().contains("Facebook application"));
+
 	}
 
 
@@ -179,5 +182,32 @@ public class ParsersTest extends TestCase {
 
 		assertEquals("{Story id=1806025 ``Win A Free Copy of 1Passwd''}",
 				String.valueOf(s));
+	}
+
+	public void testGalleriesParsers() throws Exception {
+		GalleriesParser gp=doParse("galleryphotos.xml", GalleriesParser.class);
+		assertEquals(3, gp.getItems().size());
+
+		assertEquals(1194205860000L, gp.getTimestamp());
+		assertEquals(1191613860000L, gp.getMinDate());
+		assertEquals(30556, gp.getTotal());
+		assertEquals(0, gp.getOffset());
+		assertEquals(3, gp.getCount());
+
+		GalleryPhoto photo=gp.getItems().iterator().next();
+		assertEquals(4024114, photo.getId());
+		assertEquals(1194205838000L, photo.getSubmitTimestamp());
+		assertEquals(0, photo.getNumComments());
+		assertEquals(
+			new URL("http://digg.com/users/only2percent/gallery/4024114/t.jpg"),
+			photo.getImgSrc());
+		assertEquals(
+			new URL("http://digg.com/users/only2percent/gallery/4024114"),
+			photo.getImgHref());
+		assertEquals("Reading from screen", photo.getTitle());
+		assertEquals("only2percent", photo.getUser().getName());
+		assertEquals("http://digg.com/img/udl.png", photo.getUser().getIcon());
+		assertEquals(1180490086000L, photo.getUser().getRegistered());
+		assertEquals(7, photo.getUser().getProfileviews());
 	}
 }
