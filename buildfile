@@ -20,9 +20,18 @@ define "digg" do
   project.version = VERSION_NUMBER
   project.group = GROUP
   manifest["Implementation-Vendor"] = COPYRIGHT
+  # Regular build
   compile.with "commons-httpclient:commons-httpclient:jar:3.1-rc1",
     "commons-logging:commons-logging:jar:1.1",
     "commons-codec:commons-codec:jar:1.3"
-  package(:jar)
+
+  # Gen build
+  gen_build_info "net.spy.digg"
+  compile.from "target/generated-src"
+  resources.from "target/generated-rsrc"
+
+  # I want a jar
+  package(:jar).with :manifest =>
+  	manifest.merge("Main-Class" => "net.spy.digg.BuildInfo\n")
 end
 # vim: syntax=ruby et ts=2
