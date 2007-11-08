@@ -7,6 +7,8 @@ NEXT_VERSION = "1.2"
 GROUP = "digg"
 COPYRIGHT = "2007  Dustin Sallings"
 
+require 'buildr/cobertura'
+
 # Specify Maven 2.0 remote repositories here, like this:
 repositories.remote << "http://www.ibiblio.org/maven2/"
 
