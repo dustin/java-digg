@@ -11,6 +11,20 @@ require 'buildr/cobertura'
 
 # Specify Maven 2.0 remote repositories here, like this:
 repositories.remote << "http://www.ibiblio.org/maven2/"
+repositories.remote << "http://bleu.west.spy.net/~dustin/m2repo/"
+
+plugins=[
+  'spy:m1compat:rake:1.0',
+  'spy:hg_tree_version:rake:1.0',
+  'spy:build_info:rake:1.0'
+]
+
+plugins.each do |spec|
+  artifact(spec).tap do |plugin|
+    plugin.invoke
+    load plugin.name
+  end 
+end
 
 desc "The Digg project"
 define "digg" do
