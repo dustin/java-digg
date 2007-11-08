@@ -18,7 +18,7 @@ public class ParsersTest extends TestCase {
 	 * Get the sample file with the given name.
 	 */
 	private String getSampleFile(String path) {
-		String basedir=System.getProperty("basedir");
+		String basedir=System.getProperty("user.dir");
 		assert basedir != null : "No basedir";
 		return basedir + "/src/test/data/" + path;
 	}

@@ -7,6 +7,15 @@ import junit.framework.TestCase;
  */
 public class DiggTest extends TestCase {
 
+	public void testAssertions() throws Exception {
+		try {
+			assert false : "Assertions are enabled.";
+			fail("Assertions are not enabled.");
+		} catch(AssertionError e) {
+			assertEquals("Assertions are enabled.", e.getMessage());
+		}
+	}
+
 	public void testGoodConstruction() throws Exception {
 		new Digg("http://bleu.west.spy.net/~dustin/?unused=%20true");
 	}
