@@ -4,7 +4,7 @@ VERSION_NUMBER = "1.2"
 # Version number for the next release
 NEXT_VERSION = "1.2"
 # Group identifier for your projects
-GROUP = "digg"
+GROUP = "spy"
 COPYRIGHT = "2007  Dustin Sallings"
 
 require 'buildr/cobertura'
