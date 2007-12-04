@@ -1,10 +1,7 @@
 package net.spy.digg;
 
-/*
-<thumbnail originalwidth="1000" originalheight="750"
-	contentType="image/jpeg"
-	src="http://digg.com/hardware/The_World_s_1st_Web_Server_Photo/t.jpg"
-	width="80" height="80"/>
+/**
+ * Thumbnail as may appear on a story.
  */
 public interface Thumbnail {
 
