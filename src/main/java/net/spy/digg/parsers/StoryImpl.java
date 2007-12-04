@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import net.spy.digg.Story;
+import net.spy.digg.Thumbnail;
 import net.spy.digg.Topic;
 import net.spy.digg.TopicContainer;
 import net.spy.digg.User;
@@ -18,6 +19,8 @@ public class StoryImpl implements Story, Serializable {
 	private final User user;
 	private final TopicContainer container;
 	private final Topic topic;
+
+	private final Thumbnail thumbnail;
 
 	private final int id;
 	private final String link;
@@ -45,6 +48,7 @@ public class StoryImpl implements Story, Serializable {
 		User u=null;
 		Topic top=null;
 		TopicContainer tc=null;
+		Thumbnail tn=null;
 
 		final NodeList nl=n.getChildNodes();
 		for(int i=0; i<nl.getLength(); i++) {
@@ -62,6 +66,13 @@ public class StoryImpl implements Story, Serializable {
 			} else if(nm.equals("container")) {
 				tc=new TopicContainerImpl(BaseParser.getAttr(cn, "name"),
 						BaseParser.getAttr(cn, "short_name"));
+			} else if(nm.equals("thumbnail")) {
+				tn=new ThumbnailImpl(BaseParser.getAttr(cn, "src"),
+					BaseParser.getAttr(cn, "contentType"),
+					Integer.parseInt(BaseParser.getAttr(cn, "originalwidth")),
+					Integer.parseInt(BaseParser.getAttr(cn, "originalheight")),
+					Integer.parseInt(BaseParser.getAttr(cn, "width")),
+					Integer.parseInt(BaseParser.getAttr(cn, "height")));
 			} else if(cn.getNodeType() == Node.TEXT_NODE) {
 				// skipping random text node
 			} else {
@@ -75,6 +86,7 @@ public class StoryImpl implements Story, Serializable {
 		user=u;
 		topic=top;
 		container=tc;
+		thumbnail=tn;
 
 		// Add the topic to the container.
 		container.add(topic);
@@ -168,5 +180,12 @@ public class StoryImpl implements Story, Serializable {
 	@Override
 	public String toString() {
 		return "{Story id=" + id + " ``" + title + "''}";
+	}
+
+	/* (non-Javadoc)
+	 * @see net.spy.digg.Story#getThumbnail()
+	 */
+	public Thumbnail getThumbnail() {
+		return thumbnail;
 	}
 }

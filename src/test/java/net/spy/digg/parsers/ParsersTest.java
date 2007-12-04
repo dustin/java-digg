@@ -2,12 +2,15 @@ package net.spy.digg.parsers;
 
 import java.io.FileInputStream;
 import java.net.URL;
+import java.util.Iterator;
 
 import junit.framework.TestCase;
+
 import net.spy.digg.Comment;
 import net.spy.digg.Event;
 import net.spy.digg.GalleryPhoto;
 import net.spy.digg.Story;
+import net.spy.digg.Thumbnail;
 import net.spy.digg.Topic;
 import net.spy.digg.TopicContainer;
 import net.spy.digg.User;
@@ -145,7 +148,7 @@ public class ParsersTest extends TestCase {
 		assertEquals("{User sbwms}", String.valueOf(u));
 	}
 
-	public void testStoriesParsers() throws Exception {
+	public void testStoriesParser() throws Exception {
 		StoriesParser sp=doParse("stories.xml", StoriesParser.class);
 		assertEquals(3, sp.getItems().size());
 		Story s=sp.getItems().iterator().next();
@@ -183,6 +186,28 @@ public class ParsersTest extends TestCase {
 
 		assertEquals("{Story id=1806025 ``Win A Free Copy of 1Passwd''}",
 				String.valueOf(s));
+	}
+
+	public void testStoriesParserNew() throws Exception {
+		StoriesParser sp=doParse("stories-new.xml", StoriesParser.class);
+		assertEquals(6, sp.getItems().size());
+		Iterator<Story> i=sp.getItems().iterator();
+		assertNull(i.next().getThumbnail());
+		Story s=i.next();
+
+		Thumbnail t=s.getThumbnail();
+		assertEquals(750, t.getHeight());
+		assertEquals(1000, t.getWidth());
+		assertEquals(80, t.getTnHeight());
+		assertEquals(80, t.getTnWidth());
+		assertEquals("image/jpeg", t.getContentType());
+		assertEquals(
+			"http://digg.com/hardware/The_World_s_1st_Web_Server_Photo/t.jpg",
+			t.getURL());
+
+		assertEquals(
+			"{Story id=4328994 ``The World's 1st Web Server [Photo]''}",
+			String.valueOf(s));
 	}
 
 	public void testGalleriesParsers() throws Exception {

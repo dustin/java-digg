@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<stories timestamp="1196751933" total="6" offset="0" count="6">
+ <story id="4330067" link="http://www.readwriteweb.com/archives/digg_filter_recommendation_engine_digg.php" submit_date="1196643937" diggs="410" comments="31" promote_date="1196697603" status="popular" media="news" href="http://digg.com/tech_news/Interview_With_Founder_of_Digg_Filter">
+  <title>Interview With Founder of Digg Filter</title>
+  <description>While we wait for the Digg recommendation engine, which is perpetually 'coming soon', one enterprising Digg user has taken the initiative and built one himself. After putting in 200 hours of his own time, Dmytro Mulyava has come up with Digg Filter, an API based Digg story recommender.</description>
+  <user name="supernova17" icon="http://digg.com/users/supernova17/l.png" registered="1107362835" profileviews="90249" />
+  <topic name="Tech Industry News" short_name="tech_news" />
+  <container name="Technology" short_name="technology" />
+ </story>
+ <story id="4328994" link="http://upload.wikimedia.org/wikipedia/commons/d/d1/First_Web_Server.jpg" submit_date="1196634064" diggs="1632" comments="223" promote_date="1196667604" status="popular" media="images" href="http://digg.com/hardware/The_World_s_1st_Web_Server_Photo">
+  <title>The World's 1st Web Server [Photo]</title>
+  <description>Another Steve Jobs First.</description>
+  <user name="zaibatsu" icon="http://digg.com/users/zaibatsu/l.png" registered="1102319523" profileviews="70177" />
+  <topic name="Hardware" short_name="hardware" />
+  <container name="Technology" short_name="technology" />
+  <thumbnail originalwidth="1000" originalheight="750" contentType="image/jpeg" src="http://digg.com/hardware/The_World_s_1st_Web_Server_Photo/t.jpg" width="80" height="80" />
+ </story>
+ <story id="4328398" link="http://desmoinesregister.com/apps/pbcs.dll/article?AID=/20071202/OPINION01/712020320/-1/NEWS04" submit_date="1196629364" diggs="256" comments="87" promote_date="1196648405" status="popular" media="news" href="http://digg.com/2008_us_elections/Major_Iowa_Newspaper_Covers_the_Candidates_Except_Ron_Paul">
+  <title>Major Iowa Newspaper Covers the Candidates, Except Ron Paul</title>
+  <description>Despite polling even with McCain in Iowa at 7% of likely caucus-goers, the Des Moines Register excludes Ron Paul from their candidate coverage.</description>
+  <user name="prrometheus" icon="http://digg.com/img/udl.png" registered="1152337506" profileviews="37" />
+  <topic name="US Elections 2008" short_name="2008_us_elections" />
+  <container name="World &amp; Business" short_name="world_business" />
+ </story>
+ <story id="4320565" link="http://seattletimes.nwsource.com/html/nationworld/2004046062_sperm01.html" submit_date="1196544539" diggs="1355" comments="339" promote_date="1196628604" status="popular" media="news" href="http://digg.com/world_news/Sperm_Donor_Liable_for_Child_Support_Judge_Rules">
+  <title>Sperm Donor Liable for Child Support, Judge Rules</title>
+  <description>How in the world can that be?  This has got to be a false report!</description>
+  <user name="newman1320" icon="http://digg.com/users/newman1320/l.png" registered="1194986967" profileviews="491" />
+  <topic name="World News" short_name="world_news" />
+  <container name="World &amp; Business" short_name="world_business" />
+ </story>
+ <story id="4313760" link="http://photo-and-image.blogspot.com/2007/11/we-are-good-friend.html" submit_date="1196470586" diggs="3210" comments="200" promote_date="1196553003" status="popular" media="images" href="http://digg.com/odd_stuff/We_are_good_friends_PICS">
+  <title>We are good friends![PICS]</title>
+  <description>Great animal friendship!</description>
+  <user name="iyzjg" icon="http://digg.com/img/udl.png" registered="1196306414" profileviews="83" />
+  <topic name="Odd Stuff" short_name="odd_stuff" />
+  <container name="Offbeat" short_name="offbeat" />
+  <thumbnail originalwidth="400" originalheight="340" contentType="image/jpeg" src="http://digg.com/odd_stuff/We_are_good_friends_PICS/t.jpg" width="80" height="80" />
+ </story>
+ <story id="4271143" link="http://www.treehugger.com/files/2007/11/annals_of_great.php" submit_date="1196178033" diggs="366" comments="45" promote_date="1196245205" status="popular" media="news" href="http://digg.com/environment/Plastic_Snow_in_Texas">
+  <title>Plastic Snow in Texas?</title>
+  <description>Who wants to go play with me in the plastic snow?</description>
+  <user name="sugpop" icon="http://digg.com/users/sugpop/l.png" registered="1184246678" profileviews="631" />
+  <topic name="Environment" short_name="environment" />
+  <container name="Science" short_name="science" />
+ </story>
+</stories>

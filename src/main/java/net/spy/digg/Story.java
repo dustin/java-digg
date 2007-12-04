@@ -66,4 +66,8 @@ public interface Story {
 	 */
 	User getUser();
 
+	/**
+	 * If this story has a thumbnail, return it here.  Otherwise return null.
+	 */
+	Thumbnail getThumbnail();
 }
