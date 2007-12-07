@@ -7,6 +7,12 @@ NEXT_VERSION = VERSION_NUMBER
 GROUP = "spy"
 COPYRIGHT = "2007  Dustin Sallings"
 
+# Download stuff.
+MAVEN_1_RELEASE = true
+RELEASE_REPO = 'http://bleu.west.spy.net/~dustin/repo'
+PROJECT_NAME = 'digg'
+RELEASED_VERSIONS=%W(#{VERSION_NUMBER} 1.2 1.1.6 1.0)
+
 require 'buildr/cobertura'
 
 # Specify Maven 2.0 remote repositories here, like this:
@@ -14,6 +20,7 @@ repositories.remote << "http://www.ibiblio.org/maven2/"
 repositories.remote << "http://bleu.west.spy.net/~dustin/m2repo/"
 
 plugins=[
+  'spy:site:rake:1.0',
   'spy:hg_tree_version:rake:1.0',
   'spy:build_info:rake:1.0'
 ]
