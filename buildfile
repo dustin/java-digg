@@ -20,7 +20,7 @@ repositories.remote << "http://www.ibiblio.org/maven2/"
 repositories.remote << "http://bleu.west.spy.net/~dustin/m2repo/"
 
 plugins=[
-  'spy:site:rake:1.1',
+  'spy:site:rake:1.2',
   'spy:hg_tree_version:rake:1.0',
   'spy:build_info:rake:1.0'
 ]
