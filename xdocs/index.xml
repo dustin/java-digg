@@ -38,7 +38,7 @@ Collection&lt;Story&gt; stories=d.getStories(null);
 			</pre>
 
 			<p>
-				See the <a href="apidocs/index.html">the API docs</a> for more details.
+				See the <a href="apidocs/">the API docs</a> for more details.
 			</p>
 		</section>
 
