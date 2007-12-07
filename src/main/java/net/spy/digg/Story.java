@@ -47,6 +47,19 @@ public interface Story {
 	String getStatus();
 
 	/**
+	 * Get the timestamp this story was promoted.
+	 *
+	 * @return the number of milliseconds, or -1 if this story has no promote
+	 * date.
+	 */
+	long getPromoteTimestamp();
+
+	/**
+	 * Add the media type of this story.
+	 */
+	String getMedia();
+
+	/**
 	 * Get the timestamp this story was submitted.
 	 */
 	long getSubmittedTimestamp();

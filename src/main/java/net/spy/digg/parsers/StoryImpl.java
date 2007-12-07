@@ -26,6 +26,8 @@ public class StoryImpl implements Story, Serializable {
 	private final String link;
 	private final String diggLink;
 	private final String status;
+	private final String media;
+	private final long promoteDate;
 	private final String title;
 	private final String description;
 	private final long submitDate;
@@ -42,6 +44,10 @@ public class StoryImpl implements Story, Serializable {
 		comments=Integer.parseInt(BaseParser.getAttr(n, "comments"));
 		diggLink=BaseParser.getAttr(n, "href");
 		status=BaseParser.getAttr(n, "status");
+		media=BaseParser.getAttr(n, "media");
+
+		String pdStr=BaseParser.getAttr(n, "promote_date");
+		promoteDate=pdStr == null ? -1 : 1000*Long.parseLong(pdStr);
 
 		String t=null;
 		String d=null;
@@ -188,4 +194,13 @@ public class StoryImpl implements Story, Serializable {
 	public Thumbnail getThumbnail() {
 		return thumbnail;
 	}
+
+	public String getMedia() {
+		return media;
+	}
+
+	public long getPromoteTimestamp() {
+		return promoteDate;
+	}
+
 }
