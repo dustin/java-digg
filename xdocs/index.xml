@@ -47,10 +47,10 @@ Collection&lt;Story&gt; stories=d.getStories(null);
       <p>
         My <a href="http://bleu.west.spy.net/~dustin/repo/">maven 1
         repository</a> has the latest binary version here:
-        <blockquote>
-          http://bleu.west.spy.net/~dustin/repo/
-        </blockquote>
       </p>
+      <blockquote>
+        <p>http://bleu.west.spy.net/~dustin/repo/</p>
+      </blockquote>
       <h3>Source Code</h3>
       <p>
         The source can be downloaded or checked out from my
