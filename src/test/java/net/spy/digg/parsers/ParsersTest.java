@@ -125,9 +125,7 @@ public class ParsersTest extends TestCase {
 		assertEquals(0, c.getDiggsDown());
 		assertEquals(3997943, c.getStoryId());
 		assertTrue(c.getComment().contains("Facebook application"));
-
 	}
-
 
 	public void testUsersParser() throws Exception {
 		UsersParser up=doParse("users.xml", UsersParser.class);
@@ -207,6 +205,29 @@ public class ParsersTest extends TestCase {
 
 		assertEquals(
 			"{Story id=4328994 ``The World's 1st Web Server [Photo]''}",
+			String.valueOf(s));
+	}
+
+	public void testStoriesParserNullDesc() throws Exception {
+		StoriesParser sp=doParse("story-nodesc.xml", StoriesParser.class);
+		assertEquals(1, sp.getItems().size());
+		Iterator<Story> i=sp.getItems().iterator();
+		Story s=i.next();
+		assertNotNull(s.getThumbnail());
+
+		Thumbnail t=s.getThumbnail();
+		assertEquals(670, t.getHeight());
+		assertEquals(1256, t.getWidth());
+		assertEquals(80, t.getTnHeight());
+		assertEquals(80, t.getTnWidth());
+		assertEquals("image/png", t.getContentType());
+		assertEquals(
+			"http://digg.com/business_finance/"
+				+ "30_min_w_CNN_Headline_News_pie_chart/t.png",
+			t.getURL());
+
+		assertEquals(
+			"{Story id=4574596 ``30 min w/ CNN Headline News [pie chart]''}",
 			String.valueOf(s));
 	}
 

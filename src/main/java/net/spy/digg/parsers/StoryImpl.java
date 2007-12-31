@@ -63,7 +63,12 @@ public class StoryImpl implements Story, Serializable {
 			if(nm.equals("title")) {
 				t=cn.getFirstChild().getNodeValue();
 			} else if(nm.equals("description")) {
-				d=cn.getFirstChild().getNodeValue();
+				Node node = cn.getFirstChild();
+				if(node != null){
+					d=node.getNodeValue();
+				}else{
+					d=null;
+				}
 			} else if(nm.equals("user")) {
 				u=new UserImpl(cn);
 			} else if(nm.equals("topic")) {
