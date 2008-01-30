@@ -44,6 +44,10 @@ Collection&lt;Story&gt; stories=d.getStories(null);
 
     <section name="Where to Get">
       <h3>Binary Distributions</h3>
+			<p>
+				You can visit the <a href="downloads.html">downloads</a> page to grab a
+				recent version.
+			</p>
       <p>
         My <a href="http://bleu.west.spy.net/~dustin/repo/">maven 1
         repository</a> has the latest binary version here:
