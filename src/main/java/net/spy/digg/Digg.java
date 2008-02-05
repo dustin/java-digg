@@ -435,6 +435,66 @@ public class Digg {
 	}
 
 	/**
+	 * Stories submitted by given user friends.
+	 *
+	 * @param username the user
+	 * @param p story parameters
+	 * @return the submitted stories
+	 */
+	public PagedItems<Story> getFriendsSubmissions(String username,
+			StoryParameters p) throws DiggException {
+		return getStories("/user/" + username + "/friends/submissions", p);
+	}
+
+	/**
+	 * Popular stories submitted by given user friends.
+	 *
+	 * @param username the user
+	 * @param p story parameters
+	 * @return the popular stories
+	 */
+	public PagedItems<Story> getFriendsPopularStories(String username,
+			StoryParameters p) throws DiggException {
+		return getStories("/user/" + username + "/friends/popular", p);
+	}
+
+	/**
+	 * Upcoming stories submitted by given user friends.
+	 *
+	 * @param username the user
+	 * @param p story parameters
+	 * @return the upcoming stories
+	 */
+	public PagedItems<Story> getFriendsUpcomingStories(String username,
+			StoryParameters p) throws DiggException {
+		return getStories("/user/" + username + "/friends/upcoming", p);
+	}
+
+	/**
+	 * Stories dugg by given user friends.
+	 *
+	 * @param username the user
+	 * @param p story parameters
+	 * @return the dugg stories
+	 */
+	public PagedItems<Story> getFriendsDuggStories(String username,
+			StoryParameters p) throws DiggException {
+		return getStories("/user/" + username + "/friends/dugg", p);
+	}
+
+	/**
+	 * Stories commented by given user friends.
+	 *
+	 * @param username the user
+	 * @param p story parameters
+	 * @return the commented stories
+	 */
+	public PagedItems<Story> getFriendsCommentedStories(String username,
+			StoryParameters p) throws DiggException {
+		return getStories("/user/" + username + "/friends/commented", p);
+	}
+
+	/**
 	 * Get the story with the given id.
 	 */
 	public Story getStory(int id) throws DiggException {
