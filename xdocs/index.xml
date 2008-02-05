@@ -44,9 +44,14 @@ Collection&lt;Story&gt; stories=d.getStories(null);
 
     <section name="Where to Get">
       <h3>Binary Distributions</h3>
+			<p>
+				You can visit the <a href="downloads.html">downloads</a> page to grab a
+				recent version.
+			</p>
       <p>
-        My <a href="http://bleu.west.spy.net/~dustin/repo/">maven 1
-        repository</a> has the latest binary version here:
+				Alternatively, my
+				<a href="http://bleu.west.spy.net/~dustin/repo/">maven 1 repository</a>
+				has the latest binary version here:
       </p>
       <blockquote>
         <p>http://bleu.west.spy.net/~dustin/repo/</p>
@@ -62,9 +67,32 @@ Collection&lt;Story&gt; stories=d.getStories(null);
 				This project uses Apache's
 				<a href="http://jakarta.apache.org/commons/httpclient/">http client</a>,
 				which has its own dependencies (commons-logging and commons-codec).
-				The <a href="dependencies.html">dependencies</a> report will show which
-				versions I'm using.
-      </p>
+			</p>
+			<table class="dependencies">
+				<caption>Dependencies</caption>
+
+				<thead>
+					<tr>
+						<th>Jar</th>
+						<th>Version</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>commons-httpclient</td>
+						<td>3.1-rc1</td>
+					</tr>
+					<tr>
+						<td>commons-logging</td>
+						<td>1.1</td>
+					</tr>
+					<tr>
+						<td>commons-codec</td>
+						<td>1.3</td>
+					</tr>
+				</tbody>
+			</table>
     </section>
 
     <section name="License">
