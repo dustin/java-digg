@@ -21,8 +21,8 @@ repositories.remote << "http://bleu.west.spy.net/~dustin/m2repo/"
 
 plugins=[
   'spy:site:rake:1.2.3',
-  'spy:hg_tree_version:rake:1.0',
-  'spy:build_info:rake:1.0'
+  'spy:git_tree_version:rake:1.0',
+  'spy:build_info:rake:1.1'
 ]
 
 plugins.each do |spec|
