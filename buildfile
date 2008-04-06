@@ -48,7 +48,7 @@ define "digg" do
     "commons-codec:commons-codec:jar:1.3"
 
   # Gen build
-  gen_build_info "net.spy.digg"
+  gen_build_info "net.spy.digg", "git"
   compile.from "target/generated-src"
   resources.from "target/generated-rsrc"
 
