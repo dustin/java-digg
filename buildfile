@@ -56,11 +56,5 @@ define "digg" do
   package(:jar).with :manifest =>
   	manifest.merge("Main-Class" => "net.spy.digg.BuildInfo\n")
 
-  desc "Ship the build"
-  define "ship" do
-    system "rsync", "-vaSe", "ssh", "target/digg-#{VERSION_NUMBER}.jar",
-      "basket.west.spy.net:/data/web/jboss/deploy/diggwatch.war"
-  end
-
 end
 # vim: syntax=ruby et ts=2
