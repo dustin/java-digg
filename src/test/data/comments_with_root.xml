@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<events timestamp="1211057650" min_date="1176760800" total="77" offset="0" count="10">
+ <comment date="1210040042" id="15042676" story="6437423" up="54" down="22" replies="10" replyto="" user="kevinrose" level="0" root="15042676"><![CDATA[Crazy how many people don't see this -- 
+It's a picture of the United States.  It represents all colors coming together behind Obama.]]></comment>
+ <comment date="1209872910" id="14996534" story="6403306" up="85" down="1" replies="11" replyto="" user="kevinrose" level="0" root="14996534"><![CDATA[Great theme!, Note to all, this is not yet listed on 'Installer'.  Until then, I did this:
+
+Install SummerBoard (installer), reboot. 
+Install AFPd (installer).
+Connect to your iPhone via Finder: Go, Connect To Server, iPhone IP (listed in the AFPd GUI).
+Login w/root -- default password is 'alpine' (unless you changed this, btw, change it!).
+Mount 'Mobile's Home Directory'.
+Move the extracted directories (from the theme) to Mobile's Home.../Library/SummerBoard/Themes
+Find the theme in SummerBoard.
+
+This worked on my phone w/1.1.4 - If you barely understand these instructions, don't risk it... you'll destroy your iPhone. Use at your own risk.
+
+That said, enjoy :)]]></comment>
+ <comment date="1208670424" id="14614720" story="6196322" up="16" down="7" replies="2" replyto="" user="kevinrose" level="0" root="14614720"><![CDATA[Yet another reason to buy AAPL]]></comment>
+ <comment date="1207764642" id="14312004" story="6034186" up="75" down="9" replies="1" replyto="14308886" user="kevinrose" level="1" root="14308886"><![CDATA[Actually, he's working on them now.]]></comment>
+ <comment date="1206070598" id="13824901" story="5784996" up="799" down="14" replies="37" replyto="" user="kevinrose" level="0" root="13824901"><![CDATA[No, we'll do it.]]></comment>
+ <comment date="1202234032" id="12626509" story="5122945" up="145" down="10" replies="8" replyto="" user="kevinrose" level="0" root="12626509"><![CDATA[There is something about taking a sip out of my chicken nuggets that just doesn't feel right...]]></comment>
+ <comment date="1202098869" id="12583545" story="5101440" up="411" down="21" replies="5" replyto="" user="kevinrose" level="0" root="12583545"><![CDATA[Congrats Kina!]]></comment>
+ <comment date="1201816561" id="12506073" story="5059226" up="349" down="24" replies="20" replyto="" user="kevinrose" level="0" root="12506073"><![CDATA[Having worked in TV, I've seen worse...]]></comment>
+ <comment date="1201719263" id="12474750" story="5043083" up="97" down="5" replies="2" replyto="12474215" user="kevinrose" level="1" root="12474215"><![CDATA[oh, you mean the link in the first sentence of the article?
+<a class="user" href="http://bakingbites.com/2005/10/thin-minties/">http://bakingbites.com/2005/10/thin-minties/</a>]]></comment>
+ <comment date="1201215896" id="12323274" story="4963519" up="167" down="5" replies="6" replyto="12323041" user="kevinrose" level="1" root="12323041"><![CDATA[We're looking into systems in which you can help us prioritize our bugs -- it would be great to get community input on that.]]></comment>
+</events>

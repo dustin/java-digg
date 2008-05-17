@@ -24,6 +24,16 @@ public interface Comment extends Event {
 	Integer getReplyId();
 
 	/**
+	 * The root comment ID.
+	 */
+	Integer getRoot();
+
+	/**
+	 * The level of the comment within the thread.
+	 */
+	Integer getLevel();
+
+	/**
 	 * Get the comment text.
 	 */
 	String getComment();

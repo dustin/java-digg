@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.Iterator;
 
 import junit.framework.TestCase;
-
 import net.spy.digg.Comment;
 import net.spy.digg.Event;
 import net.spy.digg.GalleryPhoto;
@@ -95,6 +94,8 @@ public class ParsersTest extends TestCase {
 		assertEquals(0, ep.getOffset());
 
 		Comment c=(Comment)ep.getItems().iterator().next();
+		assertNull(c.getRoot());
+		assertNull(c.getLevel());
 		assertEquals(6273341, c.getEventId());
 		assertEquals(new Integer(6268248), c.getReplyId());
 		assertEquals("mikesbaker", c.getUser());
@@ -104,6 +105,16 @@ public class ParsersTest extends TestCase {
 		assertTrue(c.getComment().contains("both of you"));
 		assertEquals("{Comment by mikesbaker}", String.valueOf(c));
 	}
+
+	public void testCommentsParserWithRoot() throws Exception {
+		EventsParser ep=doParse("comments_with_root.xml", EventsParser.class);
+
+		Comment c=(Comment)ep.getItems().iterator().next();
+		assertEquals(15042676, c.getEventId());
+		assertEquals(new Integer(15042676), c.getRoot());
+		assertEquals(new Integer(0), c.getLevel());
+	}
+
 
 	public void testCommentsParserEmptyReplyTo() throws Exception {
 		EventsParser ep=doParse("comments_empty_replyto.xml",
