@@ -70,4 +70,12 @@ public abstract class BaseParser {
 		}
 		return rv;
 	}
+
+	/**
+	 * Get the named attribute for the given node, or a default.
+	 */
+	public static String getAttr(Node n, String s, String def) {
+		String rv=getAttr(n, s);
+		return rv == null ? def : rv;
+	}
 }

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.Iterator;
 
 import junit.framework.TestCase;
+
 import net.spy.digg.Comment;
 import net.spy.digg.Event;
 import net.spy.digg.GalleryPhoto;
@@ -216,6 +217,32 @@ public class ParsersTest extends TestCase {
 
 		assertEquals(
 			"{Story id=4328994 ``The World's 1st Web Server [Photo]''}",
+			String.valueOf(s));
+	}
+
+	public void testStoriesParser20081019() throws Exception {
+		StoriesParser sp=doParse("stories-20081019.xml", StoriesParser.class);
+		assertEquals(79, sp.getItems().size());
+		Iterator<Story> i=sp.getItems().iterator();
+		assertEquals("http://digg.com/2008_us_elections/"
+				+ "McCain_camp_accuses_L_A_Times_of_suppressing_Obama_video"
+				+ "/t.jpg",
+				i.next().getThumbnail().getURL());
+		Story s=i.next();
+
+		Thumbnail t=s.getThumbnail();
+		assertEquals(114, t.getHeight());
+		assertEquals(154, t.getWidth());
+		assertEquals(80, t.getTnHeight());
+		assertEquals(80, t.getTnWidth());
+		assertEquals("image/jpeg", t.getContentType());
+		assertEquals(
+			"http://digg.com/2008_us_elections/"
+				+ "Republicans_are_The_Real_Socialists/t.jpg",
+			t.getURL());
+
+		assertEquals(
+			"{Story id=9238687 ``Republicans are The Real Socialists''}",
 			String.valueOf(s));
 	}
 

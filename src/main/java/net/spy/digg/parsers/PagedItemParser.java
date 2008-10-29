@@ -25,7 +25,7 @@ public abstract class PagedItemParser<T> extends BaseParser {
 		final Node root=doc.getFirstChild();
 		timestamp=1000*Long.parseLong(getAttr(root, "timestamp"));
 		total=Integer.parseInt(getAttr(root, "total"));
-		offset=Integer.parseInt(getAttr(root, "offset"));
+		offset=Integer.parseInt(getAttr(root, "offset", "0"));
 		count=Integer.parseInt(getAttr(root, "count"));
 	}
 
