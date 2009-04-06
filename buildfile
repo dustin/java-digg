@@ -47,7 +47,8 @@ define "digg" do
   # Regular build
   compile.with "commons-httpclient:commons-httpclient:jar:3.1-rc1",
     "commons-logging:commons-logging:jar:1.1",
-    "commons-codec:commons-codec:jar:1.3"
+    "commons-codec:commons-codec:jar:1.3",
+    "junit:junit:jar:4.3.1"
 
   # Gen build
   gen_build_info "net.spy.digg", "git"
