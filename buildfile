@@ -30,7 +30,7 @@ plugins.each do |spec|
   artifact(spec).tap do |plugin|
     plugin.invoke
     load plugin.name
-  end 
+  end
 end
 
 desc "The Digg project"
