@@ -16,7 +16,7 @@ RELEASED_VERSIONS=%W(#{VERSION_NUMBER} 1.2 1.1.6 1.0)
 require 'buildr/cobertura'
 
 # Specify Maven 2.0 remote repositories here, like this:
-repositories.remote << "http://www.ibiblio.org/maven2/"
+repositories.remote << "http://repo1.maven.org/maven2/"
 repositories.remote << "http://bleu.west.spy.net/~dustin/m2repo/"
 
 plugins=[
