@@ -42,6 +42,16 @@ public interface Story {
 	String getLink();
 
 	/**
+	 * Get the short URL for this story.
+	 */
+	String getShortURL();
+
+	/**
+	 * Get the number of times this short URL was viewed.
+	 */
+	int getShortURLViewCount();
+
+	/**
 	 * Get the status of this story.
 	 */
 	String getStatus();

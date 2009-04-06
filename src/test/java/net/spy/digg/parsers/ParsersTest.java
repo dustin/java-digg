@@ -246,6 +246,17 @@ public class ParsersTest extends TestCase {
 			String.valueOf(s));
 	}
 
+	public void testStoriesParser20090406() throws Exception {
+		StoriesParser sp=doParse("stories-20090406.xml", StoriesParser.class);
+		assertEquals(1, sp.getItems().size());
+		Iterator<Story> i=sp.getItems().iterator();
+
+		Story s=i.next();
+		assertEquals("http://digg.com/d1mzOO", s.getShortURL());
+		assertEquals(45, s.getShortURLViewCount());
+	}
+
+
 	public void testStoriesParserNullDesc() throws Exception {
 		StoriesParser sp=doParse("story-nodesc.xml", StoriesParser.class);
 		assertEquals(1, sp.getItems().size());

@@ -33,6 +33,8 @@ public class StoryImpl implements Story, Serializable {
 	private final long submitDate;
 	private final int diggs;
 	private final int comments;
+	private final String shortUrl;
+	private final int shortUrlViewCount;
 
 	StoryImpl(Node n) {
 		super();
@@ -55,6 +57,8 @@ public class StoryImpl implements Story, Serializable {
 		Topic top=null;
 		TopicContainer tc=null;
 		Thumbnail tn=null;
+		String su = null;
+		int suvc = 0;
 
 		final NodeList nl=n.getChildNodes();
 		for(int i=0; i<nl.getLength(); i++) {
@@ -84,6 +88,9 @@ public class StoryImpl implements Story, Serializable {
 					Integer.parseInt(BaseParser.getAttr(cn, "originalheight")),
 					Integer.parseInt(BaseParser.getAttr(cn, "width")),
 					Integer.parseInt(BaseParser.getAttr(cn, "height")));
+			} else if(nm.equals("shorturl")) {
+				su = BaseParser.getAttr(cn, "short_url");
+				suvc = Integer.parseInt(BaseParser.getAttr(cn, "view_count"));
 			} else if(cn.getNodeType() == Node.TEXT_NODE) {
 				// skipping random text node
 			} else {
@@ -98,6 +105,9 @@ public class StoryImpl implements Story, Serializable {
 		topic=top;
 		container=tc;
 		thumbnail=tn;
+
+		shortUrl = su;
+		shortUrlViewCount = suvc;
 
 		// Add the topic to the container.
 		container.add(topic);
@@ -206,6 +216,14 @@ public class StoryImpl implements Story, Serializable {
 
 	public long getPromoteTimestamp() {
 		return promoteDate;
+	}
+
+	public String getShortURL() {
+		return shortUrl;
+	}
+
+	public int getShortURLViewCount() {
+		return shortUrlViewCount;
 	}
 
 }
