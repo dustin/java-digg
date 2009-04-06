@@ -20,8 +20,16 @@ public class UserImpl implements User, Serializable {
 		super();
 		name=BaseParser.getAttr(n, "name");
 		icon=BaseParser.getAttr(n, "icon");
-		registered=1000*Long.parseLong(BaseParser.getAttr(n, "registered"));
-		profileviews=Integer.parseInt(BaseParser.getAttr(n, "profileviews"));
+		long r = 0;
+		int p = 0;
+		try {
+			r=1000*Long.parseLong(BaseParser.getAttr(n, "registered"));
+			p=Integer.parseInt(BaseParser.getAttr(n, "profileviews"));
+		} catch(NumberFormatException e) {
+			// Problem parsing one...
+		}
+		registered = r;
+		profileviews = p;
 	}
 
 	/* (non-Javadoc)

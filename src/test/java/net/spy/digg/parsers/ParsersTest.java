@@ -158,6 +158,17 @@ public class ParsersTest extends TestCase {
 		assertEquals("{User sbwms}", String.valueOf(u));
 	}
 
+	public void testUsersParser20090406() throws Exception {
+		UsersParser up=doParse("users-20090406.xml", UsersParser.class);
+		assertEquals(88, up.getUsers().size());
+
+		User u=up.getUsers().get("inactive");
+		assertEquals(0, u.getRegistered());
+		assertEquals(0, u.getProfileviews());
+
+		assertEquals("{User inactive}", String.valueOf(u));
+	}
+
 	public void testStoriesParser() throws Exception {
 		StoriesParser sp=doParse("stories.xml", StoriesParser.class);
 		assertEquals(3, sp.getItems().size());
