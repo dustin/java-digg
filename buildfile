@@ -1,6 +1,6 @@
 # -*- ruby -*-
 # Version number for this release
-VERSION_NUMBER = "1.3.7"
+VERSION_NUMBER = `git describe`.strip
 # Version number for the next release
 NEXT_VERSION = VERSION_NUMBER
 # Group identifier for your projects
