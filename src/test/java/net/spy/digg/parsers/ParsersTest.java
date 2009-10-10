@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.Iterator;
 
 import junit.framework.TestCase;
-
 import net.spy.digg.Comment;
 import net.spy.digg.Event;
 import net.spy.digg.GalleryPhoto;
@@ -168,6 +167,18 @@ public class ParsersTest extends TestCase {
 
 		assertEquals("{User inactive}", String.valueOf(u));
 	}
+
+	public void testUsersParser20091009() throws Exception {
+		UsersParser up=doParse("users-20091009.xml", UsersParser.class);
+		assertEquals(39, up.getUsers().size());
+
+		User u=up.getUsers().get("inactive");
+		assertEquals(0, u.getRegistered());
+		assertEquals(0, u.getProfileviews());
+
+		assertEquals("{User inactive}", String.valueOf(u));
+	}
+
 
 	public void testStoriesParser() throws Exception {
 		StoriesParser sp=doParse("stories.xml", StoriesParser.class);
